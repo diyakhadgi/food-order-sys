@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
 </head>
+
 <body>
     <form action="" method="post">
-        Email: <input type="email" name="email" id=""> <br><br>
-        Username: <input type="text" name="username" id=""> <br><br>
-        Password: <input type="password" name="password" id=""> <br><br>
-        Confirm Password: <input type="password" name="cpassword" id=""> <br><br>
+        Email: <input type="email" name="email" id="" required> <br><br>
+        Username: <input type="text" name="username" id="" required> <br><br>
+        Password: <input type="password" name="password" id="" required> <br><br>
+        Confirm Password: <input type="password" name="cpassword" id="" required> <br><br>
         <input type="submit" name="register" value="Register" id="">
     </form>
-<!-- comment -->
+    
     <?php
     include '../dbcon/dbconnect.php';
-    if(isset($_POST['register']))
-    {
+    if (isset($_POST['register'])) {
+        
         $username = $_POST['username'];
         $password = md5($_POST['password']);
         $cpassword = md5($_POST['cpassword']);
@@ -25,7 +27,7 @@
 
         // validating username
         $query = "SELECT * FROM users WHERE username = '$username'";
-        $user_result = mysqli_query($conn, $query); 
+        $user_result = mysqli_query($conn, $query);
 
         $num_rows = mysqli_num_rows($user_result);
 
@@ -39,15 +41,15 @@
                 $sql = "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('$username', '$password', '$email')";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
-                    ?>
+    ?>
                     <br>
-                    <?php
+                <?php
                     echo "Account created successfully";
                     header("location:http://localhost/food-order-sys/login/login.php");
                 } else {
-                    ?>
+                ?>
                     <br>
-                    <?php
+    <?php
                     echo "Something went wrong";
                 }
             } else {
@@ -58,4 +60,5 @@
     }
     ?>
 </body>
+
 </html>

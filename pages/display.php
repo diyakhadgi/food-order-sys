@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <!-- nav bar -->
@@ -15,9 +15,8 @@
         <a href="#">Home</a>
         <a href="#">Categories</a>
         <a href="#">Food</a>
-        <a href="login/login.php">Login</a>
-        <a href="register/register.php">Register</a>
         <a href="#">Contact</a>
+        <a href="#">Logout</a>
       </div>
     </nav>
 
@@ -29,6 +28,7 @@
           <input type="submit" name="" value="Search" id="" class="btn btn-primary">
         </form>
       </div>
+
     </section>
   </body>
 </html>

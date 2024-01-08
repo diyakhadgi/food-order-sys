@@ -1,6 +1,6 @@
 <?php
-session_start();
 include '../dbcon/dbconnect.php';
+session_start();
     if (isset($_POST['login'])){
         $username = $_POST['username'];
         $password = md5($_POST['password']);
@@ -10,7 +10,7 @@ include '../dbcon/dbconnect.php';
         if ($num > 0)
         {
             $_SESSION['username'] = $username;
-            header("location: http://localhost/food-order-sys/user/display.php");
+            header("location: http://localhost/food-order-sys/pages/display.php");
             exit();
         } else {
             echo "Login failed";
