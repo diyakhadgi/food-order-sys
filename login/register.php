@@ -13,7 +13,7 @@
         Confirm Password: <input type="password" name="cpassword" id=""> <br><br>
         <input type="submit" name="register" value="Register" id="">
     </form>
-
+<!-- comment -->
     <?php
     include '../dbcon/dbconnect.php';
     if(isset($_POST['register']))
