@@ -1,0 +1,63 @@
+  body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #ad1111;
+      overflow: hidden;
+      color: white;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 30px 36px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: rgb(191, 174, 174);
+      /* color: black; */
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
+    .container {
+        text-align: center;
+        /* width: 80%; */
+        margin: 0 auto;
+        padding: 1%;
+        /* background-color: blue; */
+    }
+
+    .btn {
+        padding: 0.9%;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: rgb(66, 134, 194);
+        color: white;
+        cursor: pointer;
+    }
+
+    .search-bar{
+        width: 50%;
+        padding: 1%;
+        border: none;
+        border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        background-color: whitesmoke;
+    }
