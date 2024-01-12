@@ -1,3 +1,45 @@
+<?php
+// Include the database connection file
+include '../dbcon/dbconnect.php';
+
+// Start the session
+session_start();
+
+// Check if the user is already logged in, redirect to the display page
+if (isset($_SESSION['id'])) {
+    header('location:http://localhost/food-order-sys/pages/display.php');
+    exit();
+}
+
+// Process the form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $name = $_POST['name'];
+    $username = $_POST['username'];
+    $password = md5($_POST['password']); // Note: Consider using more secure password hashing methods
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+
+    // Perform database insertion based on the selected role
+    if ($role == 'admin') {
+        $query = "INSERT INTO users (`username`, `name`, `email`, `password`, `isadmin`) VALUES ('$username', '$name', '$email', '$password', 1)";
+    } elseif ($role == 'user') {
+        $query = "INSERT INTO customer (`username`, `name`, `email`, `password`) VALUES ('$username', '$name', '$email', '$password')";
+    }
+
+    // Execute the query
+    $result = mysqli_query($conn, $query);
+
+    // Check if the query was successful
+    if ($result) {
+        header('location:http://localhost/food-order-sys/login/login.php');
+        exit();
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,56 +51,16 @@
 
 <body>
     <form action="" method="post">
-        Email: <input type="email" name="email" id="" required> <br><br>
-        Username: <input type="text" name="username" id="" required> <br><br>
-        Password: <input type="password" name="password" id="" required> <br><br>
-        Confirm Password: <input type="password" name="cpassword" id="" required> <br><br>
-        <input type="submit" name="register" value="Register" id="">
+        Full Name: <input type="text" name="name" required><br><br>
+        Email: <input type="email" name="email" required><br><br>
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        User Type:
+        <select name="role" required>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select><br><br>
+        <input type="submit" name="register" value="Register">
     </form>
-    
-    <?php
-    include '../dbcon/dbconnect.php';
-    if (isset($_POST['register'])) {
-        
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $cpassword = md5($_POST['cpassword']);
-        $email = $_POST['email'];
-
-        // validating username
-        $query = "SELECT * FROM users WHERE username = '$username'";
-        $user_result = mysqli_query($conn, $query);
-
-        $num_rows = mysqli_num_rows($user_result);
-
-        if ($num_rows > 0) {
-            echo "<br>";
-            echo "Username already taken";
-        } else {
-            // check if password matches
-
-            if ($password == $cpassword) {
-                $sql = "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('$username', '$password', '$email')";
-                $result = mysqli_query($conn, $sql);
-                if ($result) {
-    ?>
-                    <br>
-                <?php
-                    echo "Account created successfully";
-                    header("location:http://localhost/food-order-sys/login/login.php");
-                } else {
-                ?>
-                    <br>
-    <?php
-                    echo "Something went wrong";
-                }
-            } else {
-                echo "<br>";
-                echo "Password doesn't match";
-            }
-        }
-    }
-    ?>
 </body>
-
 </html>

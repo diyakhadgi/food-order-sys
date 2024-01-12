@@ -1,21 +1,6 @@
 <?php
 include '../dbcon/dbconnect.php';
 session_start();
-    if (isset($_POST['login'])){
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-        $result = mysqli_query($conn, $sql);
-        $num = mysqli_num_rows($result);
-        if ($num > 0)
-        {
-            $_SESSION['username'] = $username;
-            header("location: http://localhost/food-order-sys/pages/display.php");
-            exit();
-        } else {
-            echo "Login failed";
-        }
-    }
 ?> 
 
 <!DOCTYPE html>
@@ -32,6 +17,24 @@ session_start();
         Password: <input type="password" name="password" id=""> <br><br>
         <input type="submit" name="login" value="Login" id="">
     </form>
-    </div>   
+    <a href="../register/register.php">Don't have an account?</a>
+    </div>  
+    <?php
+      if (isset($_POST['login'])){
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+        $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($conn, $sql);
+        $num = mysqli_num_rows($result);
+        if ($num > 0)
+        {
+            $_SESSION['username'] = $username;
+            header("location: http://localhost/food-order-sys/pages/display.php");
+            exit();
+        } else {
+            echo "Login failed";
+        }
+    }
+    ?> 
 </body>
 </html>
