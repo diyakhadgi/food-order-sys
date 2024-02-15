@@ -16,17 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
     $name = $_POST['name'];
     $username = $_POST['username'];
-    $password = md5($_POST['password']); // Note: Consider using more secure password hashing methods
+    $password = md5($_POST['password']);
     $email = $_POST['email'];
     $role = $_POST['role'];
 
-    // Perform database insertion based on the selected role
-    if ($role == 'admin') {
-        $query = "INSERT INTO users (`username`, `name`, `email`, `password`, `isadmin`) VALUES ('$username', '$name', '$email', '$password', 1)";
-    } elseif ($role == 'user') {
-        $query = "INSERT INTO customer (`username`, `name`, `email`, `password`) VALUES ('$username', '$name', '$email', '$password')";
-    }
-
+    $query = "INSERT INTO staff (`username`, `name`, `email`, `password`, `isadmin`,`usertype`) VALUES ('$username', '$name', '$email', '$password','0', '$role')";
     // Execute the query
     $result = mysqli_query($conn, $query);
 
@@ -57,10 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Password: <input type="password" name="password" required><br><br>
         User Type:
         <select name="role" required>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
+            <option value="KITCHEN">Kitchen</option>
+            <option value="WAITER">Waiter</option>
+            <option value="COUNTER">Counter</option>
         </select><br><br>
         <input type="submit" name="register" value="Register">
     </form>
 </body>
+
 </html>
