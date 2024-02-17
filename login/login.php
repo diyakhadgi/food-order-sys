@@ -31,10 +31,17 @@ session_start();
             $row = mysqli_fetch_assoc($result);
             if ($row) {
                 $usertype = $row["usertype"];
+                $isadmin = $row["isadmin"];
+                if($isadmin == 1)
+                {
+                    $_SESSION['username'] = $username;
+                    header("location: ../admin/display.php");
+                    exit();
+                } else {
                 switch ($usertype) {
                     case "KITCHEN":
                         $_SESSION['username'] = $username;
-                        header("location: http://localhost/food-order-sys/pages/display.php");
+                        header("location: ../pages/display.php");
                         exit();
                         break;
                     case "WAITER":
@@ -50,7 +57,8 @@ session_start();
                     default:
                         echo "Invalid user type";
                 }
-            } else {
+            } 
+        } else {
                 echo "Invalid username or password";
             }
         } else {
