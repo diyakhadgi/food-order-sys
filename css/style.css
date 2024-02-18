@@ -1,69 +1,69 @@
-  body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    nav {
-      background-color: #ad1111;
-      overflow: hidden;
-      color: white;
-    }
+nav {
+  background-color: #ad1111;
+  overflow: hidden;
+  color: white;
+}
 
-    nav a {
-      float: left;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 30px 36px;
-      text-decoration: none;
-    }
+nav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 36px;
+  text-decoration: none;
+}
 
-    nav a:hover {
-      color: rgb(191, 174, 174);
-      /* color: black; */
-    }
+nav a:hover {
+  color: rgb(191, 174, 174);
+  /* color: black; */
+}
 
-    .left {
-      float: left;
-    }
+.left {
+  float: left;
+}
 
-    .right {
-      float: right;
-    }
-    .container {
-        text-align: center;
-        /* width: 80%; */
-        margin: 0 auto;
-        padding: 1%;
-        /* background-color: blue; */
-    }
+.right {
+  float: right;
+}
+.container {
+  text-align: center;
+  /* width: 80%; */
+  margin: 0 auto;
+  padding: 1%;
+  /* background-color: blue; */
+}
 
-    .btn {
-        padding: 0.9%;
-        border: none;
-        font-size: 1rem;
-        border-radius: 5px;
-    }
+.btn {
+  padding: 0.9%;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
 
-    .btn-primary {
-        background-color: rgb(66, 134, 194);
-        color: white;
-        cursor: pointer;
-    }
+.btn-primary {
+  background-color: rgb(66, 134, 194);
+  color: white;
+  cursor: pointer;
+}
 
-    .search-bar{
-        width: 50%;
-        padding: 1%;
-        border: none;
-        border-radius: 5px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 1rem;
-        background-color: whitesmoke;
-    }
+.search-bar {
+  width: 50%;
+  padding: 1%;
+  border: none;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  background-color: whitesmoke;
+}
 
-    /* explore section  */
-    /* .category-container {
+/* explore section  */
+/* .category-container {
       padding:4% 0; 
       text-align: center;
     }
@@ -91,118 +91,121 @@
       margin-bottom: 2%;
     } */
 
-    
-    .explore-section {
-      text-align: center;
-      padding: 50px 0;
-      /* background-color: blue; */
-    }
+.explore-section {
+  text-align: center;
+  padding: 50px 0;
+  /* background-color: blue; */
+}
 
-    .section-heading {
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 20px;
-      /* background-color: pink; */
-    }
+.section-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  /* background-color: pink; */
+}
 
-    .food-item {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      /* background-color: orange; */
-    }
+.food-item {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  /* background-color: orange; */
+}
 
-    .food-card {
-      width: 25%;
-      margin: 10px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      /* background-color: purple; */
-    }
+.food-card {
+  width: 25%;
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  /* background-color: purple; */
+}
 
-    .food-image {
-      width: 100%;
-      /* height: 200px;
+.food-image {
+  width: 100%;
+  /* height: 200px;
       object-fit: cover; */
-    }
+}
 
-    .food-details {
-      padding: 15px;
-    }
+.food-details {
+  padding: 15px;
+}
 
-    .food-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 8px;
-    }
+.food-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
 
 /* menu section  */
 
-    .food-menu-section {
-      text-align: center;
-      padding: 50px 0;
-      background-color: rgb(240, 240, 240);
-    }
+.food-menu-section {
+  text-align: center;
+  padding: 50px 0;
+  background-color: rgb(240, 240, 240);
+}
 
-    .menu-heading {
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 20px;
-    }
+.menu-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
 
-    .food-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
+.food-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
-    .food-items {
-      width: calc(33.33% - 20px);
-      margin: 10px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+.food-items {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-    .food-images {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+.food-images {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
-    .food-details {
-      padding: 15px;
-    }
+.food-details {
+  padding: 15px;
+}
 
-    .food-titles {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 8px;
-    }
+.food-titles {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
 
-    .food-descriptions {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 12px;
-    }
+.food-descriptions {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
 
-    .order-button {
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px 20px;
-      text-decoration: none;
-      display: inline-block;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
+.order-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 
-    .order-button:hover {
-      background-color: #0056b3;
-    }
+.order-button:hover {
+  background-color: #0056b3;
+}
+
+.food-item {
+  display: flex;
+}

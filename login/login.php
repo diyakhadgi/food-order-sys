@@ -41,7 +41,7 @@ session_start();
                 switch ($usertype) {
                     case "KITCHEN":
                         $_SESSION['username'] = $username;
-                        header("location: ../pages/display.php");
+                        header("location: ../pages/kitchen_home.php");
                         exit();
                         break;
                     case "WAITER":

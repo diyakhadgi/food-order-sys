@@ -13,7 +13,6 @@
       </div>
       <div class="right">
         <a href="#">Home</a>
-        <a href="#">Categories</a>
         <a href="#">Food</a>
         <a href="#">Contact</a>
         <a href="../login/logout.php">Logout</a>
@@ -41,7 +40,7 @@ if($profile==true)
 else {
     header('location:http://localhost/food-order-sys/index.html');
 }
-$sql = "SELECT * FROM users where username = '$profile'";
+$sql = "SELECT * FROM staff where username = '$profile'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo "Welcome " .$row['name'];
