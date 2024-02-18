@@ -1,45 +1,67 @@
-<?php include('nav.php'); ?>
-    <div class="main-content">
-        <div class="wrapper">
-            <br>
-            <h3>MANAGE ADMIN</h3> <br>
-        <!-- button to add admin  -->
+<?php include('nav.php');
+include '../dbcon/dbconnect.php';
+session_start();
+$profile = $_SESSION['username'];
+if ($profile == true) {
+} else {
+    header('location:http://localhost/food-order-sys/index.html');
+}
+?>
+<div class="main-content">
+    <div class="wrapper">
+        <br>
+        <h3>MANAGE ADMIN</h3> <br>
+        <?php
+        if (isset($_SESSION['add'])) {
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
+        }
+        if(isset($_SESSION['delete'])) {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+        ?>
+        <br><br>
         <a href="add-admin.php" class="btn-primary">Add Admin</a> <br> <br><br>
-            <table class="tbl">
-                <tr>
-                    <th>S.N.</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Diya Khadgi</td>
-                    <td>diyak</td>
-                    <td>
-                        <a href="#" class="btn-secondary">Update Admin</a>
-                        <a href="#" class="btn-secondary">Delete Admin</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Diya Khadgi</td>
-                    <td>diyak</td>
-                    <td>
-                        Update Admin
-                        Delete Admin
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Diya Khadgi</td>
-                    <td>diyak</td>
-                    <td>
-                        Update Admin
-                        Delete Admin
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <table class="tbl">
+            <tr>
+                <th>S.N.</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+
+            <?php
+            include '../dbcon/dbconnect.php';
+            $sql = "SELECT * FROM staff WHERE `isadmin` = 1";
+            $result = mysqli_query($conn, $sql);
+            $num = mysqli_num_rows($result);
+            $sn = 1;
+            if ($num > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $username = $row['username'];
+                    $email = $row['email'];
+            ?>
+
+                    <tr>
+                        <td><?php echo $sn++ ?></td>
+                        <td><?php echo $name ?></td>
+                        <td><?php echo $username ?></td>
+                        <td>
+                            <a href="#" class="btn-secondary">Update Admin</a>
+                            <a href="../admin/delete-admin.php?id=<?php echo $id;?>" class="btn-secondary">Delete Admin</a>
+                        </td>
+                    </tr>
+
+            <?php
+                }
+            } else {
+            }
+            ?>
+        </table>
     </div>
+</div>
+
 </html>
