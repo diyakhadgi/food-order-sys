@@ -1,6 +1,6 @@
 <?php
 include '../dbcon/dbconnect.php';
-include '../admin/nav.php';
+include '../login/login-check.php';
 session_start();
 $profile = $_SESSION['username'];
 if (!$profile) {
@@ -14,24 +14,24 @@ if (!$profile) {
         <br><br>
 
         <?php
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id'])) { 
             $id = $_GET['id'];
             $sql = "SELECT * FROM staff WHERE id = $id";
             $result = mysqli_query($conn, $sql);
             $num = mysqli_num_rows($result);
 
-            if ($num > 0) {
+            if ($num == 1) {
                 $row = mysqli_fetch_assoc($result);
 
                 $name = $row['name'];
                 $email = $row['email'];
                 $username = $row['username'];
             } else {
-                header("location: ../admin/manage-admin.php");
+                header("location:http://localhost/food-order-sys/admin/manage-admin.php");
                 exit(); 
             }
         } else {
-            header("location: ../admin/manage-admin.php");
+            header("location:http://localhost/food-order-sys/admin/manage-admin.php");
             exit(); 
         }
         ?>
@@ -69,7 +69,6 @@ if (!$profile) {
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <!-- Pass the 'id' as a hidden input field -->
                         <input type="hidden" name="id" value="<?php echo $id ?>">
                         <input type="submit" name="submit" value="Update Admin" class="btn-secondary">
                     </td>
@@ -81,29 +80,28 @@ if (!$profile) {
 </div>
 
 <?php
-// Check if the form is submitted
+include '../dbcon/dbconnect.php';
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = md5($_POST['password']); // Old password provided by the user
-    $npassword = md5($_POST['npassword']); // New password provided by the user
-
-    // Retrieve the old password from the database
+    $password = md5($_POST['password']); 
+    $npassword = md5($_POST['npassword']); 
+    
     $sql = "SELECT password FROM staff WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $oldPasswordDB = $row['password']; 
 
-    if (md5($password) == $oldPasswordDB) {
-        // Update the admin's information (name, email, username, and password)
+    if ($password == $oldPasswordDB) {
+        
         $updateQuery = "UPDATE staff SET
         `name` = '$name',
         `email` = '$email',
         `username` = '$username',
         `password` = '$npassword'
-        WHERE id = '$id'";
+        WHERE `id` = '$id'";
 
         $result = mysqli_query($conn, $updateQuery);
         if ($result) {
@@ -112,9 +110,13 @@ if (isset($_POST['submit'])) {
             exit();
         } else {
             $_SESSION['update'] = "Failed to update admin";
+            header("location: http://localhost/food-order-sys/admin/manage-admin.php");
+            exit();
         }
     } else {
         $_SESSION['update'] = "Old password is incorrect";
+        header("location: http://localhost/food-order-sys/admin/manage-admin.php");
+        exit();
     }
 }
 ?>

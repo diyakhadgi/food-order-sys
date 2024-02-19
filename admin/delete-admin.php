@@ -1,14 +1,6 @@
 <?php
 include '../dbcon/dbconnect.php';
-session_start();
-$profile = $_SESSION['username'];
-if($profile==true)
-{
-
-}
-else {
-    header('location:http://localhost/food-order-sys/index.html');
-}
+include '../login/login-check.php';
 ?>
 <?php
 $id = $_GET['id'];
