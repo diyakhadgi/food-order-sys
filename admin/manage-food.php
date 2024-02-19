@@ -1,12 +1,13 @@
 <?php
 include 'nav.php';
+include '../login/login-check.php';
 ?>
 <div class="main-content">
     <div class="wrapper">
     <br>
             <h3>MANAGE FOOD</h3> <br>
         <!-- button to add admin  -->
-        <a href="#" class="btn-primary">Add Admin</a> <br> <br><br>
+        <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
             <table class="tbl">
                 <tr>
                     <th>S.N.</th>
