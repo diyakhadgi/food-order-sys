@@ -11,14 +11,17 @@ include '../login/login-check.php';
             <table class="tbl">
                 <tr>
                     <th>S.N.</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Price</th>
                     <th>Actions</th>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>Diya Khadgi</td>
-                    <td>diyak</td>
+                    <td>Momo</td>
+                    <td>very thicc and juicy</td>
+                    <td></td>
                     <td>
                         <a href="#" class="btn-secondary">Update Admin</a>
                         <a href="#" class="btn-secondary">Delete Admin</a>
