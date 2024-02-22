@@ -3,11 +3,7 @@ include '../dbcon/dbconnect.php';
 include '../login/login-check.php';
 include '../admin/nav.php';
 ?>
-<script>
-    function fileAdded() {
-        alert("file moved");
-    }
-</script>
+
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Food</h1>
@@ -74,7 +70,7 @@ if (isset($_POST['submit'])) {
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['add'] = "Item added";
-            header("location: ../admin/add-food.php");
+            header("location: ../admin/manage-food.php");
             exit();
         } else {
             $_SESSION['add'] = "Item not added";
