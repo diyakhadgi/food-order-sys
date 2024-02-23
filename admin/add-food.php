@@ -8,13 +8,6 @@ include '../admin/nav.php';
     <div class="wrapper">
         <h1>Add Food</h1>
         <br><br>
-        <?php
-        if (isset($_SESSION['add'])) {
-            echo $_SESSION['add'];
-            unset($_SESSION['add']);
-        }
-        ?>
-        <br>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="tbl-30">
                 <table>
@@ -70,11 +63,11 @@ if (isset($_POST['submit'])) {
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['add'] = "Item added";
-            header("location: ../admin/manage-food.php");
+            header("location: http://localhost/food-order-sys/admin/manage-food.php "); 
             exit();
         } else {
             $_SESSION['add'] = "Item not added";
-            header("location: ../admin/manage-food.php");
+            header("location: http://localhost/food-order-sys/admin/manage-food.php ");
             exit();
         }
     } else {

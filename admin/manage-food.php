@@ -10,6 +10,11 @@ include '../login/login-check.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <script>
+        function confirmDel() {
+            return confirm("Are you sure you want to delete this item?");
+        }
+    </script>
 </head>
 
 </html>
@@ -17,7 +22,25 @@ include '../login/login-check.php';
     <div class="wrapper">
         <br>
         <h3>MANAGE FOOD</h3> <br>
-        
+
+        <?php
+            if(isset($_SESSION['add'])){
+                echo $_SESSION['add'];
+                unset($_SESSION['add']);
+            }
+            if(isset($_SESSION['delete'])) {
+                echo $_SESSION['delete'];
+                unset($_SESSION['delete']);
+            }
+            if(isset($_SESSION['upload'])){
+                echo $_SESSION['upload'];
+                unset($_SESSION['upload']);
+            }
+            if(isset($_SESSION['unauthorized'])){
+                echo $_SESSION['unauthorized'];
+                unset($_SESSION['unauthorized']);
+            }
+        ?> <br><br>
         <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
         <table class="item-tbl">
             <tr>
@@ -37,6 +60,8 @@ include '../login/login-check.php';
             $sn = 1;
             if ($num > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
+                    $id = $row['id'];
+                    $image = $row['image'];
             ?>
                     <tr>
                         <td><?php echo $sn++; ?></td>
@@ -50,7 +75,7 @@ include '../login/login-check.php';
                             <a href="#" class="btn-sec">Update Item</a>
                         </td>
                         <td class="widi">
-                            <a href="#" class="btn-dan">Delete Item</a>
+                            <a href="../admin/delete-food.php?id=<?php echo $id; ?>&image=<?php echo $row['image']; ?>" onclick="return confirmDel();" class="btn-dan">Delete Item</a>
                         </td>
                     </tr>
             <?php
