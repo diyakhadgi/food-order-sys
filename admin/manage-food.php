@@ -40,6 +40,10 @@ include '../login/login-check.php';
                 echo $_SESSION['unauthorized'];
                 unset($_SESSION['unauthorized']);
             }
+            if(isset($_SESSION['update'])){
+                echo $_SESSION['update'];
+                unset($_SESSION['update']);
+            }
         ?> <br><br>
         <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
         <table class="item-tbl">
@@ -72,7 +76,7 @@ include '../login/login-check.php';
                         </td>
                         <td><?php echo 'Rs.' . $row['price']; ?></td>
                         <td colspan="2" class="widi">
-                            <a href="#" class="btn-sec">Update Item</a>
+                            <a href="../admin/update-food.php?id=<?php echo $id;?>" class="btn-sec">Update Item</a>
                         </td>
                         <td class="widi">
                             <a href="../admin/delete-food.php?id=<?php echo $id; ?>&image=<?php echo $row['image']; ?>" onclick="return confirmDel();" class="btn-dan">Delete Item</a>
