@@ -1,19 +1,15 @@
 <?php
-// Include the database connection file
 include '../dbcon/dbconnect.php';
 
-// Start the session
 session_start();
 
 // Check if the user is already logged in, redirect to the display page
 if (isset($_SESSION['id'])) {
-    header('location:http://localhost/food-order-sys/pages/display.php');
+    header('location:http://localhost/food-order-sys/pages/index.php');
     exit();
 }
 
-// Process the form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
+if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = md5($_POST['password']);
@@ -21,10 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
 
     $query = "INSERT INTO staff (`username`, `name`, `email`, `password`, `isadmin`,`usertype`) VALUES ('$username', '$name', '$email', '$password','0', '$role')";
-    // Execute the query
     $result = mysqli_query($conn, $query);
 
-    // Check if the query was successful
     if ($result) {
         header('location:http://localhost/food-order-sys/login/login.php');
         exit();
@@ -58,5 +52,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" name="register" value="Register">
     </form>
 </body>
-
 </html>

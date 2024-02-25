@@ -37,6 +37,7 @@
             <a href="../login/login.php">Order List</a>
             <a href="../register/register.php">Checkout</a>
             <a href="#">Contact</a>
+            <a href="../login/logout.php">Logout</a>
         </div>
     </nav>
 
@@ -53,7 +54,7 @@
             <th>Description</th>
             <th>Image</th>
             <th>Price</th>
-            <th>Actions</th>
+            <th>Order Now</th>
         </tr>
         <?php
         include '../dbcon/dbconnect.php';

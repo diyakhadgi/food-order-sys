@@ -8,15 +8,6 @@ include '../login/login-check.php';
     <div class="wrapper">
         <h1>Add Admin</h1>
         <br><br>
-        <?php
-
-            if(isset($_SESSION['add']))
-            {
-                echo $_SESSION['add'];
-                unset($_SESSION['add']);
-            }
-        ?>
-
         <form action="" method="POST">
             <table class="tbl-30">
                 <tr>

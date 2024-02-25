@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-    <form action="">
+    <form action="" method="post">
         <fieldset>
             <legend>Selected Food</legend>
             <div class="food-menu-img">
@@ -43,9 +43,10 @@ if (isset($_GET['id'])) {
                 <div class="order-label">Quantity
                     <div class="quantity">
                         <button class="btn minus-btn disabled" type="button">-</button>
-                        <input type="text" name="" id="quantity" value="1" class="qty" disabled="disabled">
+                        <input type="text" name="quantity" id="quantity" value="1" class="qty" readonly="true">
                         <button class="btn plus-btn" type="button">+</button>
-                        <input type="submit" name="submit" id="" value="Add to Order List" class="submit-btn">
+                        <input type="submit" name="submit" id="" value="Confirm Order" class="submit-btn">
+                        <input type="hidden" name="item_id" value="<?php echo $itemId; ?>">
                     </div>
                 </div>
             </div>
@@ -53,7 +54,22 @@ if (isset($_GET['id'])) {
     </form>
     <script src="order.js"></script>
 </body>
+
 </html>
 <?php
+include '../dbcon/dbconnect.php';
+if (isset($_POST['submit'])) {
+    $item_id = $_POST['item_id'];
+    $qty = $_POST['quantity'];
+    $total = $qty * $price;
 
+    $sql2 = "INSERT into order_tbl (`item_id`, `qty`, `total`) VALUES ($item_id, $qty, $total)";
+    $result2 = mysqli_query($conn, $sql2);
+
+    if ($result2 == true) {
+        echo "<script>alert('Added to Order List')</script>";
+    } else {
+        echo "<script>alert('Something went wrong')</script>";
+    }
+}
 ?>
