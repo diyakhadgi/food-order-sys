@@ -30,35 +30,35 @@ session_start();
         if ($result) {
             $row = mysqli_fetch_assoc($result);
             if ($row) {
+                $user_id = $row["id"]; // Fetching user's ID
                 $usertype = $row["usertype"];
                 $isadmin = $row["isadmin"];
-                if($isadmin == 1)
-                {
-                    $_SESSION['username'] = $username;
+                if($isadmin == 1) {
+                    $_SESSION['id'] = $user_id; // Storing user's ID in session
                     header("location: ../admin/display.php");
                     exit();
                 } else {
-                switch ($usertype) {
-                    case "KITCHEN":
-                        $_SESSION['username'] = $username;
-                        header("location: ../pages/kitchen_home.php");
-                        exit();
-                        break;
-                    case "WAITER":
-                        $_SESSION['username'] = $username;
-                        header("location: ../pages/waiter_home.php");
-                        exit();
-                        break;
-                    case "COUNTER":
-                        $_SESSION['username'] = $username;
-                        header("location: ../pages/counter_home.php");
-                        exit();
-                        break;
-                    default:
-                        echo "Invalid user type";
-                }
-            } 
-        } else {
+                    switch ($usertype) {
+                        case "KITCHEN":
+                            $_SESSION['id'] = $user_id; // Storing user's ID in session
+                            header("location: ../pages/kitchen_home.php");
+                            exit();
+                            break;
+                        case "WAITER":
+                            $_SESSION['id'] = $user_id; // Storing user's ID in session
+                            header("location: ../pages/waiter_home.php");
+                            exit();
+                            break;
+                        case "COUNTER":
+                            $_SESSION['id'] = $user_id; // Storing user's ID in session
+                            header("location: ../pages/counter_home.php");
+                            exit();
+                            break;
+                        default:
+                            echo "Invalid user type";
+                    }
+                } 
+            } else {
                 echo "Invalid username or password";
             }
         } else {

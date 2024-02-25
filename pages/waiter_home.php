@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Online Food Ordering System</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -8,18 +7,15 @@
     <link rel="stylesheet" href="../css/orderpopup.css">
 
     <script>
-        function openPopup(url) {
-            // Show the popup
+        function openPopup(url) {  
             var popup = document.getElementById("popup");
             popup.style.display = "block";
 
-            // Load content into the popup
             var popupContent = document.getElementById("popupContent");
             popupContent.src = url;
         }
 
         function closePopup() {
-            // Hide the popup
             var popup = document.getElementById("popup");
             popup.style.display = "none";
         }
@@ -34,7 +30,7 @@
         </div>
         <div class="right">
             <a href="../pages/waiter_home.php">Home</a>
-            <a href="../login/login.php">Order List</a>
+            <a href="../pages/order_list.php">Order List</a>
             <a href="../register/register.php">Checkout</a>
             <a href="#">Contact</a>
             <a href="../login/logout.php">Logout</a>
@@ -58,6 +54,7 @@
         </tr>
         <?php
         include '../dbcon/dbconnect.php';
+        include '../login/login-check.php';
         $sql = "SELECT * FROM item";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
