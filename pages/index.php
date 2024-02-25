@@ -14,10 +14,9 @@
       <a href="index.php">Online Food Ordering System</a>
     </div>
     <div class="right">
-      <a href="index.php">Home</a>
-      <a href="#">Food</a>
-      <a href="login/login.php">Login</a>
-      <a href="register/register.php">Register</a>
+      <a href="../pages/index.php">Home</a>
+      <a href="../login/login.php">Login</a>
+      <a href="../register/register.php">Register</a>
       <a href="#">Contact</a>
     </div>
   </nav>
@@ -48,22 +47,22 @@
           $price = $row['price'];
           $image = $row['image'];
       ?>
-        <div class="menu">
-          <div class="food-menu-box">
-            <div class="food-menu-img">
-              <img src="<?php echo $row['image'] ?>" alt="<?php echo "Image of " . $row['title'] ?>" class="item" height="200px" width="200px">
-            </div>
-          <div class="food-menu-desc">
-              <h4><?php echo $row['title']; ?></h4>
-              <p class="food-price">Rs. <?php echo $row['price']; ?></p>
-              <p class="food-detail">
-                <?php echo $row['description']; ?>
-              </p>
+          <div class="menu">
+            <div class="food-menu-box">
+              <div class="food-menu-img">
+                <img src="<?php echo $row['image'] ?>" alt="<?php echo "Image of " . $row['title'] ?>" class="item" height="200px" width="200px">
+              </div>
+              <div class="food-menu-desc">
+                <h4><?php echo $row['title']; ?></h4>
+                <p class="food-price">Rs. <?php echo $row['price']; ?></p>
+                <p class="food-detail">
+                  <?php echo $row['description']; ?>
+                </p>
 
-              <br>
-              <a href="../login/login.php">Order Now</a>
+                <br>
+                <a href="../login/login.php">Order Now</a>
+              </div>
             </div>
-          </div>
           </div>
       <?php
         }
