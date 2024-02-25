@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/item.css">
     <link rel="stylesheet" href="../css/orderpopup.css">
+    <script>
+        function confirmDel() {
+            return confirm("Are you sure you want to delete the order?");
+        }
+    </script>
 </head>
 
 <body>
@@ -29,7 +34,7 @@
     <div class="wrapper">
         <br>
         <h3>Order List</h3> <br>
-        <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
+
         <table class="item-tbl">
             <tr>
                 <th>S.N.</th>
@@ -42,36 +47,37 @@
             include '../dbcon/dbconnect.php';
             include '../login/login-check.php';
 
-            $sql = "SELECT item.title, item.price, order_tbl.qty from item inner join order_tbl on item.id = order_tbl.item_id where order_tbl.user_id = $profile";
+            $sql = "SELECT item.title, item.price, order_tbl.qty, order_tbl.order_id from item inner join order_tbl on item.id = order_tbl.item_id where order_tbl.user_id = $profile and order_tbl.hascheckout = 0";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 $sn = 1;
                 while ($row = mysqli_fetch_assoc($result)) {
+                    $order_id = $row['order_id'];
             ?>
                     <tr>
                         <td><?php echo $sn++; ?></td>
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['price']; ?> </td>
-                        <td><?php echo $row['qty'];?></td>
+                        <td><?php echo $row['qty']; ?></td>
                         <td>
-                        <div class="quantity">
-                            <button class="btn minus-btn disabled" type="button">-</button>
-                            <input type="text" name="quantity" id="quantity" value="1" class="qty" readonly="true">
-                            <button class="btn plus-btn" type="button">+</button>
-                        </div>
+                            <div class="quantity">
+                                <button class="btn minus-btn disabled" type="button">-</button>
+                                <input type="text" name="quantity" id="quantity" value="1" class="qty" readonly="true">
+                                <button class="btn plus-btn" type="button">+</button>
+                            </div>
                         </td>
                         <td>
-                            <a href="../pages/delete-order.php?id=<?php echo $id;?>">Remove</a>
+                            <a href="../pages/delete-order.php?id=<?php echo $order_id; ?>" onclick="return confirmDel();">Remove</a>
                         </td>
-
                     </tr>
             <?php
                 }
             } else {
-                echo "Something went wrong";
+                echo "<tr> <td colspans='6'> Nothing to display. </td></tr>";
             }
             ?>
         </table>
         <script src="../pages/order.js"></script>
         </body>
+
 </html>
