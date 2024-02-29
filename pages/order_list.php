@@ -46,8 +46,7 @@
             <?php
             include '../dbcon/dbconnect.php';
             include '../login/login-check.php';
-
-            $sql = "SELECT item.title, item.price, order_tbl.qty, order_tbl.order_id from item inner join order_tbl on item.id = order_tbl.item_id where order_tbl.user_id = $profile and order_tbl.hascheckout = 0";
+          $sql = "SELECT item.title, item.price, order_item.qty, order_item.order_id from item inner join order_item on item.id = orderder_item.user_id = $profile and order_item.hascheckout = 0";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 $sn = 1;
@@ -62,7 +61,7 @@
                         <td>
                             <div class="quantity">
                                 <button class="btn minus-btn disabled" type="button">-</button>
-                                <input type="text" name="quantity" id="quantity" value="1" class="qty" readonly="true">
+                                <input type="text" name="quantity" id="quantity" value="<?php echo $row['qty']; ?>" class="qty" readonly="true">
                                 <button class="btn plus-btn" type="button">+</button>
                             </div>
                         </td>

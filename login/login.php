@@ -30,27 +30,28 @@ session_start();
         if ($result) {
             $row = mysqli_fetch_assoc($result);
             if ($row) {
-                $user_id = $row["id"]; // Fetching user's ID
+                session_start();
+                $user_id = $row["id"]; 
                 $usertype = $row["usertype"];
                 $isadmin = $row["isadmin"];
                 if($isadmin == 1) {
-                    $_SESSION['id'] = $user_id; // Storing user's ID in session
+                    $_SESSION['id'] = $user_id; 
                     header("location: ../admin/display.php");
                     exit();
                 } else {
                     switch ($usertype) {
                         case "KITCHEN":
-                            $_SESSION['id'] = $user_id; // Storing user's ID in session
+                            $_SESSION['id'] = $user_id; 
                             header("location: ../pages/kitchen_home.php");
                             exit();
                             break;
                         case "WAITER":
-                            $_SESSION['id'] = $user_id; // Storing user's ID in session
-                            header("location: ../pages/waiter_home.php");
+                            $_SESSION['id'] = $user_id; 
+                            header("location: ../pages/test.php");
                             exit();
                             break;
                         case "COUNTER":
-                            $_SESSION['id'] = $user_id; // Storing user's ID in session
+                            $_SESSION['id'] = $user_id; 
                             header("location: ../pages/counter_home.php");
                             exit();
                             break;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Online Food Ordering System</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="../css/orderpopup.css">
 
     <script>
-        function openPopup(url) {  
+        function openPopup(url) {
             var popup = document.getElementById("popup");
             popup.style.display = "block";
 
@@ -54,7 +55,9 @@
         </tr>
         <?php
         include '../dbcon/dbconnect.php';
-        include '../login/login-check.php';
+        // include '../login/login-check.php';
+        // $tableno = $_GET['table_id'];
+        // echo $tableno;
         $sql = "SELECT * FROM item";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {

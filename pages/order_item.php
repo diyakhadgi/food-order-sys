@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
                         <button class="btn plus-btn" type="button">+</button>
                         <input type="submit" name="submit" id="" value="Confirm Order" class="submit-btn">
                         <input type="hidden" name="item_id" value="<?php echo $itemId; ?>">
-                        <input type="hidden" name="username" id="" value="<?php echo $profile ?>">
+                        <!-- <input type="hidden" name="username" id="" value="<?php echo $profile ?>"> -->
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
     $item_id = $_POST['item_id'];
     $qty = $_POST['quantity'];
     $total = $qty * $price;
-    $username = $_POST['username'];
+    // $username = $_POST['username'];
     // echo $profile;
 
     $sql2 = "INSERT into order_tbl (`item_id`, `qty`, `total`, `user_id`) VALUES ($item_id, $qty, $total, '$profile')";
