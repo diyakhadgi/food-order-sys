@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($priceres && mysqli_num_rows($priceres) > 0) {
             $price_row = mysqli_fetch_assoc($priceres);
             $price = $price_row['price'];
-        $tot = $newqty * $price;
+            $tot = $newqty * $price;
         }
         $sql2 = "UPDATE order_item AS ot
                  INNER JOIN orders AS o ON o.order_id = ot.order_id
@@ -37,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/item.css">
-    <link rel="stylesheet" href="../css/orderpopup.css">
 </head>
 
 <body>
@@ -47,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="right">
             <a href="../pages/waiter_home.php">Home</a>
-            <a href="../pages/order_list.php">Order List</a>
-            <a href="../register/register.php">Checkout</a>
+            <!-- <a href="../pages/orderlist.php">Order List</a> -->
+            <!-- <a href="../register/register.php">Checkout</a> -->
             <a href="#">Contact</a>
             <a href="../login/logout.php">Logout</a>
         </div>
@@ -58,6 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="wrapper">
             <br>
             <h3>Order List</h3>
+            <form action="" method="post">
+                <input type="submit" name="confirm" id="" value="Confirm Order">
+            </form>
             <br>
 
             <table class="item-tbl">
@@ -65,8 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>S.N.</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Quantity</th>
-                    <th colspan="3">Actions</th>
+                    <th colspan="2">Quantity</th>
+                    <th>Status</th>
+                    <th colspan="3">Action</th>
                 </tr>
                 <?php
                 include '../dbcon/dbconnect.php';
@@ -87,12 +90,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?php echo $row['title']; ?></td>
                             <td><?php echo $row['price']; ?> </td>
                             <td><?php echo $row['qty']; ?> </td>
-
                             <td>
                                 <form action="" method="post">
                                     <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>">
                                     <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
                             </td>
+                            <?php
+                            $sql4 = "SELECT `hascheckout` from orders";
+                            $sqlres = mysqli_query($conn, $sql4);
+                            if ($sqlres && mysqli_num_rows($sqlres) > 0) {
+                                $roww = mysqli_fetch_assoc($sqlres);
+                                $hascheckout = $roww['hascheckout'];
+                                if ($hascheckout == 0) {
+                                    $hascheckout = "Pending";
+                                }
+                            }
+                            ?> <td><?php echo $hascheckout ?></td>
                             <td>
                                 <input type="submit" name="update" value="Update">
                                 </form>
@@ -110,6 +123,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
         </div>
     </div>
+
+    <?php
+    if (isset($_POST['confirm'])) {
+        echo $order_id;
+    }
+    ?>
+    <script>
+        function confirmDel() {
+            return confirm("Are you sure you want to delete the order?");
+        }
+    </script>
 </body>
 
 </html>
