@@ -41,7 +41,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th colspan="3"></th>
+                <th colspan="3">Actions</th>
             </tr>
             <?php
             include '../dbcon/dbconnect.php';
@@ -60,9 +60,7 @@
                         <td><?php echo $row['qty']; ?></td>
                         <td>
                             <div class="quantity">
-                                <button class="btn minus-btn disabled" type="button">-</button>
-                                <input type="text" name="quantity" id="quantity" value="<?php echo $row['qty']; ?>" class="qty" readonly="true">
-                                <button class="btn plus-btn" type="button">+</button>
+                                <input type="number" name="quantity" id="" value="?php echo $row['qty']?>">
                             </div>
                         </td>
                         <td>

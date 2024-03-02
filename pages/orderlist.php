@@ -52,8 +52,8 @@ if (!isset($_SESSION['order_id'])) {
         </div>
         <div class="right">
             <a href="../pages/waiter_home.php">Home</a>
-            <a href="../pages/order_list.php">Order List</a>
-            <a href="../register/register.php">Checkout</a>
+            <!-- <a href="../pages/orderlist.php">Order List</a> -->
+            <!-- <a href="../register/register.php">Checkout</a> -->
             <a href="#">Contact</a>
             <a href="../login//logout.php">Logout</a>
         </div>
@@ -106,6 +106,7 @@ if (!isset($_SESSION['order_id'])) {
                     }
                     ?>
                     <button name="finalizeorder" type="submit">Order Now</button>
+                    <a href="vieworder.php?order_id=<?php echo $_SESSION['order_id'] ?>">View Order</a>
                 </form>
             </table>
             <?php
@@ -114,16 +115,16 @@ if (!isset($_SESSION['order_id'])) {
                 // Get the order ID from the session
                 $orderid = $_SESSION['order_id'];
                 if ($orderid) {
-                    // echo 'orderID: ' . $orderid . '<br>';
+                    echo 'orderID: ' . $orderid . '<br>';
 
                     $orderitemlist = $_POST['ordercheckbox'];
                     print_r($orderitemlist);
                     $quantity = $_POST['quantity'];
                     print_r($quantity);
                     foreach ($orderitemlist as $itemId) {
-                        // echo 'Item id: ' . $itemId . '<br>';
+                        echo 'Item id: ' . $itemId . '<br>';
                         $orderQuantity = $quantity[$itemId];
-                        // echo 'Order quantity: ' . $orderQuantity . '<br>';
+                        echo 'Order quantity: ' . $orderQuantity . '<br>';
                         // Insert order items into order_item table
                         $price = "SELECT price from item where id = $itemId";
                         $result = mysqli_query($conn, $price);
@@ -137,7 +138,7 @@ if (!isset($_SESSION['order_id'])) {
                                 echo $totalPrice . '<br>';
                             }
                             $insertordersql = "INSERT INTO order_item (`order_id`, item_id, user_id, qty, total) VALUES ('$orderid','$itemId',' $profile',$orderQuantity,'$totalPrice')";
-                            // echo $insertordersql;
+                            echo $insertordersql;
                             $res = mysqli_query($conn, $insertordersql);
 
                             if ($res) {
@@ -150,6 +151,7 @@ if (!isset($_SESSION['order_id'])) {
                     // Process order items
                 }
             }
+            unset($_SESSION['order_id']);
             ?>
         </div>
     </div>

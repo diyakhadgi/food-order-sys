@@ -47,7 +47,7 @@ session_start();
                             break;
                         case "WAITER":
                             $_SESSION['id'] = $user_id; 
-                            header("location: ../pages/test.php");
+                            header("location: ../pages/waiter_home.php");
                             exit();
                             break;
                         case "COUNTER":
