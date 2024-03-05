@@ -6,11 +6,10 @@ session_start();
 
 // Fetch the table number
 $tableNo = $_GET['table_id'];
-
 // Check if the order ID is already stored in the session
 if (!isset($_SESSION['order_id'])) {
     // Fetch order details for the given table number
-    $fetchorderid = "SELECT * FROM orders WHERE table_no = $tableNo AND hascheckout = 0";
+    $fetchorderid = "SELECT * FROM orders WHERE table_no = $tableNo AND hascheckout IN (0, 1)";
     $res = mysqli_query($conn, $fetchorderid);
     if ($res) {
         // Check if an order exists for the table number

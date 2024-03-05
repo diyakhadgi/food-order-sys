@@ -1,53 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: auto;
+            height: 500px;
+            background: pink;
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .wrapper {
+            background-color: whitesmoke;
+            width: 300px;
+            padding: 20px;
+            height: 300px;
+            text-align: center;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
 <body>
-<style type="text/css">
-    .divTable
-    {
-        display:  table;
-        width:auto;
-        background-color:#eee;
-        border:1px solid  #666666;
-        border-spacing:5px;/*cellspacing:poor IE support for  this*/
-       /* border-collapse:separate;*/
-    }
+    <div class="container">
+        <?php
 
-    .divRow
-    {
-       display:table-row;
-       width:auto;
-    }
+        include '../dbcon/dbconnect.php';
+        include '../login/login-check.php';
 
-    .divCell
-    {
-        float:left;/*fix for  buggy browsers*/
-        display:table-column;
-        width:200px;
-        background-color:#ccc;
-    }
-</style>
+        $sql = "SELECT * FROM no_table";
+        $result = mysqli_query($conn, $sql);
+        $num = mysqli_num_rows($result);
 
-  <form id="form1">
-      <div class="divTable">
-             <div class="headRow">
-                <div class="divCell" align="center">Customer ID</div>
-                <div  class="divCell">Customer Name</div>
-                <div  class="divCell">Customer Address</div>
-             </div>
-            <div class="divRow">
-                  <div class="divCell">001</div>
-                <div class="divCell">002</div>
-                <div class="divCell">003</div>
-            </div>
-            <div class="divRow">
-                <div class="divCell">xxx</div>
-                <div class="divCell">yyy</div>
-                <div class="divCell">www</div>
-           </div>
-            <div class="divRow">
-                <div class="divCell">ttt</div>
-                <div class="divCell">uuu</div>
-                <div class="divCell">Mkkk</div>
-           </div>
-
-      </div>
-  </form>
+        if ($num > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+                <a href="./counterorderlist.php?table_id=<?php echo $row['tbl_id']; ?>">
+                    <div class="wrapper">
+                        <?php echo $row['tbl_no']; ?>
+                    </div>
+                </a>
+        <?php
+            }
+        } else {
+        } ?>
+    </div>
 </body>
+
+</html>

@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body>
-    <!-- nav bar -->
-    <nav>
-      <div class="left">
-        <a href="#">Online Food Ordering System</a>
-      </div>
-      <div class="right">
-        <a href="#">Home</a>
-        <a href="#">Food</a>
-        <a href="#">Contact</a>
-        <a href="../login/logout.php">Logout</a>
-      </div>
-    </nav>
 
-    <!--  food search bar-->
-    <section class="food-search">
-      <div class="container">
-        <form action="" method="post">
-          <input type="search" name="search" placeholder="Search for food.." id="" class="search-bar">
-          <input type="submit" name="" value="Search" id="" class="btn btn-primary">
-        </form>
-      </div>
-    </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: auto;
+            height: 500px;
+            background: pink;
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+        }
 
-<?php
-include '../dbcon/dbconnect.php';
-session_start();
-$profile = $_SESSION['username'];
-if($profile==true)
-{
+        .wrapper {
+            background-color: whitesmoke;
+            width: 300px;
+            padding: 20px;
+            height: 300px;
+            text-align: center;
+            margin: 0 auto;
+        }
+    </style>
+</head>
 
-}
-else {
-    header('location:http://localhost/food-order-sys/index.html');
-}
-$sql = "SELECT * FROM staff where username = '$profile'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo "Welcome " .$row['name'];
-?>
+<body>
+    <div class="container">
+        <?php
 
-  </body>
+        include '../dbcon/dbconnect.php';
+        include '../login/login-check.php';
+
+        $sql = "SELECT * FROM no_table";
+        $result = mysqli_query($conn, $sql);
+        $num = mysqli_num_rows($result);
+
+        if ($num > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+                <a href="./orderlist.php?table_id=<?php echo $row['tbl_id']; ?>">
+                    <div class="wrapper">
+                        <?php echo $row['tbl_no']; ?>
+                    </div>
+                </a>
+        <?php
+            }
+        } else {
+        } ?>
+    </div>
+</body>
+
 </html>

@@ -1,5 +1,14 @@
 <?php
 $oid = $_GET['order_id'];
+session_start();
+$type = $_SESSION['usertype'];
+
+$profile = $_SESSION['id'];
+if (!$profile) {
+    header("location: http://localhost/food-order-sys/pages/index.php");
+    exit();
+}
+// echo $type;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../dbcon/dbconnect.php';
     if (isset($_POST['update'])) {
@@ -57,9 +66,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="wrapper">
             <br>
             <h3>Order List</h3>
-            <form action="" method="post">
-                <input type="submit" name="confirm" id="" value="Confirm Order">
-            </form>
+            <?php
+            if ($type == "KITCHEN") { ?>
+                <form method="POST">
+                    <input type="submit" name="placeOrder" id="" value="Place Order">
+                </form>
+                <?php
+                if (isset($_POST['placeOrder'])) {
+                    $hasserve = $_POST['hasServe'];
+                    echo $hasserve;
+                }
+                ?>
+            <?php } else if ($type == "WAITER") {
+            ?>
+                <form action="" method="post">
+                    <input type="submit" name="confirm" id="" value="Confirm Order">
+                </form>
+            <?php
+            }
+            ?>
             <br>
 
             <table class="item-tbl">
@@ -73,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>
                 <?php
                 include '../dbcon/dbconnect.php';
-                include '../login/login-check.php';
+
                 $sql = "SELECT * from order_item as ot inner join item as i on ot.item_id = i.id inner join orders as o on o.order_id = ot.order_id where o.hascheckout = 0 and o.order_id = $oid ";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
@@ -82,8 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $order_id = $row['order_id'];
                         $item_id = $row['id'];
                         $orderitemid = $row['order_item_id'];
-
-
                 ?>
                         <tr>
                             <td><?php echo $sn++; ?></td>
@@ -96,16 +119,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
                             </td>
                             <?php
-                            $sql4 = "SELECT `hascheckout` from orders";
+                            $sql4 = "SELECT hasServed from order_item where order_item_id = $orderitemid";
                             $sqlres = mysqli_query($conn, $sql4);
                             if ($sqlres && mysqli_num_rows($sqlres) > 0) {
                                 $roww = mysqli_fetch_assoc($sqlres);
-                                $hascheckout = $roww['hascheckout'];
-                                if ($hascheckout == 0) {
-                                    $hascheckout = "Pending";
+                                $hasserved = $roww['hasServed'];
+                                if ($hasserved == 0) {
+                                    $hasserved = "Order Pending";
+                                } else if ($hasserved == 1) {
+                                    $hasserved = "Order Placed";
                                 }
                             }
-                            ?> <td><?php echo $hascheckout ?></td>
+                            if ($type == "KITCHEN") {
+                            ?>
+                                <td>
+                                    <form action="" method="post">
+                                        <select name="hasServe" id="">
+                                            <option value="option">Select option</option>
+                                            <option value="ready">Ready</option>
+                                        </select>
+                                    </form>
+                                    <?php
+                                        if ($_POST['placeOrder']) {
+                                            
+                                        }
+                                    ?>
+                                </td>
+                            <?php
+                            } else {
+                            ?>
+                                <td>hello<?php echo $hasserved ?></td>
+                            <?php
+                            }
+                            ?>
                             <td>
                                 <input type="submit" name="update" value="Update">
                                 </form>
@@ -123,10 +169,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
         </div>
     </div>
-
     <?php
     if (isset($_POST['confirm'])) {
-        echo $order_id;
+        // echo $order_id;
+        $message = "Order confirmed successfully.";
+        echo "<script>alert('$message');</script>";
     }
     ?>
     <script>

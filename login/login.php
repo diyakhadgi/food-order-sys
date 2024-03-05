@@ -33,6 +33,7 @@ session_start();
                 session_start();
                 $user_id = $row["id"]; 
                 $usertype = $row["usertype"];
+                $_SESSION['usertype'] = $usertype;
                 $isadmin = $row["isadmin"];
                 if($isadmin == 1) {
                     $_SESSION['id'] = $user_id; 
