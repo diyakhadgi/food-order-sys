@@ -9,13 +9,17 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="container">
+    <div class="login">
     <form action="" method="post">
-        Username: <input type="text" name="username" id=""> <br><br>
-        Password: <input type="password" name="password" id=""> <br><br>
-        <input type="submit" name="login" value="Login" id="">
+        <h1>LOG IN</h1>
+        <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required> 
+        <label for="password"> Password:</label>
+             <input type="password" name="password" id="" required>
+        <button type="submit" name="login">Login</button>
     </form>
     <a href="../register/register.php">Don't have an account?</a>
     </div>  
