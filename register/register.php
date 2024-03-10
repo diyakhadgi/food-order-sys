@@ -35,9 +35,11 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
+    <link rel="stylesheet" href="../css/register.css">
 </head>
 
 <body>
+    <div class="register">
     <form action="" method="post">
         Full Name: <input type="text" name="name" required><br><br>
         Email: <input type="email" name="email" required><br><br>
@@ -49,7 +51,8 @@ if (isset($_POST['register'])) {
             <option value="WAITER">Waiter</option>
             <option value="COUNTER">Counter</option>
         </select><br><br>
-        <input type="submit" name="register" value="Register">
+        <button type="submit" name="register">Register</button>
     </form>
+    </div>
 </body>
 </html>

@@ -18,7 +18,7 @@ session_start();
         <label for="username">Username:</label>
             <input type="text" name="username" id="username" required> 
         <label for="password"> Password:</label>
-             <input type="password" name="password" id="" required>
+             <input type="password" name="password" id="password" required>
         <button type="submit" name="login">Login</button>
     </form>
     <a href="../register/register.php">Don't have an account?</a>
