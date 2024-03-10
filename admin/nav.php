@@ -16,7 +16,6 @@
         <a href="../admin/display.php">Home</a>
         <a href="manage-admin.php">Admin</a>
         <a href="manage-food.php">Food</a>
-        <a href="manage-other.php">Order</a>
         <a href="../login/logout.php">Logout</a>
       </div>
     </nav>

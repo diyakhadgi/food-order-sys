@@ -33,6 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Not updated";
         }
+        if (isset($_POST['hasServe'])) {
+            $testt = $_POST['hasServe'];
+            $iid = $_POST['update'];
+            $serveSQL = "UPDATE order_item set hasServed = 1 where item_id = $iid and order_id = $oid and hasServed = 0";
+            $response = mysqli_query($conn, $serveSQL);
+            if ($response) {
+                echo "Done";
+            }
+        }
     }
 }
 ?>
@@ -74,7 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 if (isset($_POST['placeOrder'])) {
                     $hasserve = $_POST['hasServe'];
-                    echo $hasserve;
+
+                    $sql = "UPDATE order_item set hasServed = 1 where item_id = $";
                 }
                 ?>
             <?php } else if ($type == "WAITER") {
@@ -105,7 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sn = 1;
                     while ($row = mysqli_fetch_assoc($result)) {
                         $order_id = $row['order_id'];
-                        $item_id = $row['id'];
+
+                        $item_id = $row['item_id'];
                         $orderitemid = $row['order_item_id'];
                 ?>
                         <tr>
@@ -132,28 +143,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             }
                             if ($type == "KITCHEN") {
                             ?>
-                                <td>
-                                    <form action="" method="post">
-                                        <select name="hasServe" id="">
-                                            <option value="option">Select option</option>
+
+                                <td> <?php if ($type == "KITCHEN") { ?> <select name="hasServe" id="">
+                                            <option value="option" disabled selected>Select option</option>
                                             <option value="ready">Ready</option>
-                                        </select>
-                                    </form>
-                                    <?php
-                                        if ($_POST['placeOrder']) {
-                                            
-                                        }
-                                    ?>
-                                </td>
+                                        </select> <?php } ?> </td>
                             <?php
                             } else {
                             ?>
-                                <td>hello<?php echo $hasserved ?></td>
+                                <td><?php echo $hasserved ?></td>
                             <?php
                             }
                             ?>
                             <td>
-                                <input type="submit" name="update" value="Update">
+                                <button type="submit" name="update" value="<?php echo $item_id ?>">UPDATE</button>
                                 </form>
                             </td>
                             <td>

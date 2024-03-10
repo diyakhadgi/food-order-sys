@@ -8,6 +8,7 @@ nav {
   background-color: #ad1111;
   overflow: hidden;
   color: white;
+  position: sticky;
 }
 
 nav a {

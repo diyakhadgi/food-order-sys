@@ -14,25 +14,25 @@ include '../admin/nav.php';
                     <tr>
                         <td>Title: </td>
                         <td>
-                            <input type="text" name="title" id="" placeholder="Title of the food">
+                            <input type="text" name="title" id="" placeholder="Title of the food" required>
                         </td>
                     </tr>
                     <tr>
                         <td>Description: </td>
                         <td>
-                            <textarea name="description" id="" cols="30" rows="5" placeholder="Description of the food"></textarea>
+                            <textarea name="description" id="" cols="30" rows="5" placeholder="Description of the food" required></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>Price: </td>
                         <td>
-                            <input type="number" name="price" id="">
+                            <input type="number" name="price" id="" required>
                         </td>
                     </tr>
                     <tr>
                         <td>Select Image: </td>
                         <td>
-                            <input type="file" name="image" id="">
+                            <input type="file" name="image" id="" required>
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
             exit();
         }
     } else {
-        echo "file not moved in folder";
+        // echo "file not moved in folder";
     }
 }
 

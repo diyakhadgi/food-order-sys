@@ -8,27 +8,31 @@ session_start();
 $tableNo = $_GET['table_id'];
 // Check if the order ID is already stored in the session
 if (!isset($_SESSION['order_id'])) {
-    // Fetch order details for the given table number
-    $fetchorderid = "SELECT * FROM orders WHERE table_no = $tableNo AND hascheckout IN (0, 1)";
-    $res = mysqli_query($conn, $fetchorderid);
-    if ($res) {
-        // Check if an order exists for the table number
-        if (mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_assoc($res);
-            // Store the order ID in the session
-            $_SESSION['order_id'] = $row['order_id'];
+    // Sanitize the input
+    $tableNo = mysqli_real_escape_string($conn, $tableNo);
+
+    // Check if there's an existing active order for the given table number
+    $existingOrderQuery = "SELECT * FROM orders WHERE table_no = '$tableNo' AND hascheckout = 0";
+    $existingOrderResult = mysqli_query($conn, $existingOrderQuery);
+
+    if ($existingOrderResult && mysqli_num_rows($existingOrderResult) > 0) {
+        // If there's an active order, retrieve its ID and store it in the session
+        $existingOrderRow = mysqli_fetch_assoc($existingOrderResult);
+        $_SESSION['order_id'] = $existingOrderRow['order_id'];
+    } else {
+        // If there's no active order, create a new one
+        $insertOrderQuery = "INSERT INTO orders (table_no, hascheckout) VALUES ('$tableNo', 0)";
+        $insertOrderResult = mysqli_query($conn, $insertOrderQuery);
+
+        if ($insertOrderResult) {
+            // Store the ID of the newly created order in the session
+            $_SESSION['order_id'] = mysqli_insert_id($conn);
         } else {
-            // If no order exists, create a new order and store its ID in the session
-            $insertorderid = "INSERT INTO orders (table_no, hascheckout) VALUES ($tableNo, 0)";
-            $result = mysqli_query($conn, $insertorderid);
-            if ($result) {
-                $_SESSION['order_id'] = mysqli_insert_id($conn); // Get the inserted order ID
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+            echo "Error: " . mysqli_error($conn);
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>

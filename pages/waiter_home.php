@@ -40,7 +40,9 @@
         if ($num > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
+                <!-- <a href="./orderlist.php?table_id=<?php echo $row['tbl_id']; ?>"> -->
                 <a href="./orderlist.php?table_id=<?php echo $row['tbl_id']; ?>">
+
                     <div class="wrapper">
                         <?php echo $row['tbl_no']; ?>
                     </div>
