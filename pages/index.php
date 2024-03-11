@@ -20,7 +20,9 @@
       <a href="#">Contact</a>
     </div>
   </nav>
-
+  <center>
+    <h2>Food Menu</h2>
+  </center>
   <!--  food search bar-->
   <section class="food-search">
     <div class="container">
@@ -31,9 +33,7 @@
     </div>
   </section>
 
-  <div class="food-menu">
-    <div class="container">
-      <h2 class="text-center">Food Menu</h2>
+    <div class="container-food">
       <?php
       include '../dbcon/dbconnect.php';
       $sql = "SELECT * FROM item";
@@ -60,7 +60,7 @@
                 </p>
 
                 <br>
-                <a href="../login/login.php">Order Now</a>
+                <a href="../login/login.php" class="order-now-link">Order Now</a>
               </div>
             </div>
           </div>

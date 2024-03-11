@@ -18,6 +18,7 @@ nav a {
   text-align: center;
   padding: 30px 36px;
   text-decoration: none;
+  position: sticky;
 }
 
 nav a:hover {
