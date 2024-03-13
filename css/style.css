@@ -66,12 +66,12 @@ nav a:hover {
 
 .menu {
   display: flex;
-  gap: 20px; 
+  gap: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 100%; 
+  width: 100%;
 }
 
 .food-menu-box {
@@ -80,8 +80,8 @@ nav a:hover {
 }
 
 .food-menu-img img {
-  width: 200px; 
-  height: 200px; 
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -111,4 +111,35 @@ nav a:hover {
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+}
+
+/* buttons  */
+.update-btn {
+  background: rgb(83, 144, 224);
+  height: 35px;
+  padding: 8%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px 0px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.update-btn:hover {
+  cursor: pointer;
+  background: rgb(95, 158, 240);
+}
+.del-btn {
+  background: red;
+  height: 50px;
+  padding: 8%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px 0px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}
+.del-btn:hover{
+  background-color: rgb(242, 45, 45);
 }

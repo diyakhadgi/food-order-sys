@@ -49,7 +49,7 @@ if (!$profile) {
                         <input type="email" name="email" id="" value="<?php echo $email ?>">
                     </td>
                 </tr>
-                <tr>
+                <tr> 
                     <td>Username: </td>
                     <td>
                         <input type="text" name="username" id="" placeholder="Username" value="<?php echo $username ?>">

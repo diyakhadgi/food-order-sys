@@ -3,7 +3,6 @@ include '../dbcon/dbconnect.php';
 
 // Start session
 session_start();
-
 // Fetch the table number
 $tableNo = $_GET['table_id'];
 // Check if the order ID is already stored in the session
@@ -32,7 +31,11 @@ if (!isset($_SESSION['order_id'])) {
         }
     }
 }
-
+if ($_SESSION['usertype'] == "KITCHEN") {
+    $url = 'http://localhost/food-order-sys/pages/vieworder.php?order_id=';
+    $headerurl = $url . $_SESSION['order_id'];
+    header('Location:' . $headerurl);
+}
 ?>
 
 <!DOCTYPE html>

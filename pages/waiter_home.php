@@ -36,7 +36,6 @@
         }
 
         .wrapper:hover {
-            transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
@@ -58,7 +57,6 @@
             height: 50px;
             margin-bottom: 10px;
         }
-
     </style>
 </head>
 

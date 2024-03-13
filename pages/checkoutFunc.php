@@ -3,7 +3,7 @@ include '../dbcon/dbconnect.php';
 
 if (isset($_POST['checkout'])) {
     $oid = $_POST['table_id'];
-    echo $oid;
+    // echo $oid;   
     // Sanitize input to prevent SQL injection
     $oid = mysqli_real_escape_string($conn, $oid);
 
@@ -12,6 +12,7 @@ if (isset($_POST['checkout'])) {
 
     if ($response) {
         // echo "DONE";
+        header("location: http://localhost/food-order-sys/pages/counterorderlist.php?table_id=$oid");
     } else {
         // Display error message if query fails
         echo "Error: " . mysqli_error($conn);

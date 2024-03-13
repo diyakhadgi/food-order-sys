@@ -8,7 +8,7 @@ if (!$profile) {
     header("location: http://localhost/food-order-sys/pages/index.php");
     exit();
 }
-// echo $type;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../dbcon/dbconnect.php';
     if (isset($_POST['update'])) {
@@ -52,9 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Food Ordering System</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/admin.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/item.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -78,31 +78,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             if ($type == "KITCHEN") { ?>
                 <form method="POST">
-                    <input type="submit" name="placeOrder" id="" value="Place Order">
+                    <input type="submit" name="placeOrder" id="" value="Place Order" <?php if ($type == "KITCHEN") {
+                                                                                            echo 'hidden';
+                                                                                        } ?>>
                 </form>
                 <?php
                 if (isset($_POST['placeOrder'])) {
-                    $hasserve = $_POST['hasServe'];
-
-                    $sql = "UPDATE order_item set hasServed = 1 where item_id = $";
-                }
+                    $hasserve = $_POST['hasServe'];      }
                 ?>
             <?php } else if ($type == "WAITER") {
             ?>
-                <form action="" method="post">
+                <!-- <form action="" method="post">
                     <input type="submit" name="confirm" id="" value="Confirm Order">
-                </form>
+                </form> -->
             <?php
             }
             ?>
             <br>
 
-            <table class="item-tbl">
+            <table class="item-tbl" border="1">
                 <tr>
                     <th>S.N.</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th colspan="2">Quantity</th>
+                    <th>Quantity</th>
+                    <?php
+                    if ($type != "KITCHEN") {
+                    ?>
+
+                        <th>Update Quantity</th>
+                    <?php
+                    }
+                    ?>
                     <th>Status</th>
                     <th colspan="3">Action</th>
                 </tr>
@@ -124,11 +131,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?php echo $row['title']; ?></td>
                             <td><?php echo $row['price']; ?> </td>
                             <td><?php echo $row['qty']; ?> </td>
-                            <td>
-                                <form action="" method="post">
-                                    <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>">
-                                    <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
-                            </td>
+                            <?php
+                            if ($type != "KITCHEN") {
+                            ?>
+
+
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>" <?php if ($type == "KITCHEN") {
+                                                                                                                                        echo 'hidden';
+                                                                                                                                    } ?>>
+                                        <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+                                </td>
+                            <?php
+                            }
+                            ?>
                             <?php
                             $sql4 = "SELECT hasServed from order_item where order_item_id = $orderitemid";
                             $sqlres = mysqli_query($conn, $sql4);
@@ -156,11 +173,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             }
                             ?>
                             <td>
-                                <button type="submit" name="update" value="<?php echo $item_id ?>">UPDATE</button>
+                                <button type="submit" class="update-btn" name="update" value="<?php echo $item_id ?>">UPDATE</button>
                                 </form>
                             </td>
                             <td>
-                                <a href="../pages/delete-order.php?id=<?php echo $orderitemid; ?>" onclick="return confirmDel();">Remove</a>
+                                <a href="../pages/delete-order.php?id=<?php echo $orderitemid; ?>" onclick="return confirmDel();" class="del-btn" <?php if ($type == "KITCHEN") {
+                                                                                                                                                        echo 'hidden';
+                                                                                                                                                    } ?>>Remove</a>
                             </td>
                         </tr>
                 <?php

@@ -25,11 +25,11 @@
             <link rel="stylesheet" href="../css/admin.css">
             <link rel="stylesheet" href="../css/style.css">
             <link rel="stylesheet" href="../css/item.css">
-            <script>
+            <!-- <script>
                 function getConfirmation() {
                     return confirm('Do you want to Checkout?');
                 }
-            </script>
+            </script> -->
 
         </head>
 
@@ -49,6 +49,8 @@
                     <br>
                     <h3>Order List</h3>
                     <br>
+                    <!-- <button onclick="window.print()">print</button> -->
+
                     <table>
                         <tr>
                             <th>S.N.</th>
@@ -93,10 +95,11 @@
                                 <td></td>
                                 <td></td>
                                 <td bgcolor="#DEDEDE">Grand Total:</td>
-                                <td bgcolor="#DEDEDE"><?php echo $grandTotal; ?></td> <!-- Display the grand total -->
+                                <td bgcolor="#DEDEDE"><?php echo $grandTotal; ?></td> 
                             </tr>
                             <input type="hidden" name="table_id" value="<?php echo $oid; ?>">
-                            <button type="submit" name="checkout" onclick="return getConfirmation()">CHECKOUT</button>
+                            <button type="submit" name="checkout">Checkout</button> &nbsp;
+                            <button type="submit" name="checkout" onclick="window.print()">Generate Bill</button>
                         </form>
 
                     </table>
