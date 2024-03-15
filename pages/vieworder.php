@@ -2,48 +2,38 @@
 $oid = $_GET['order_id'];
 session_start();
 $type = $_SESSION['usertype'];
-
 $profile = $_SESSION['id'];
 if (!$profile) {
     header("location: http://localhost/food-order-sys/pages/index.php");
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include '../dbcon/dbconnect.php';
-    if (isset($_POST['update'])) {
-        $newqty = $_POST['quantity'];
-        $item_id = $_POST['item_id'];
-        $sql3 = "SELECT price from item WHERE id = $item_id";
-        $priceres = mysqli_query($conn, $sql3);
-        if ($priceres && mysqli_num_rows($priceres) > 0) {
-            $price_row = mysqli_fetch_assoc($priceres);
-            $price = $price_row['price'];
-            $tot = $newqty * $price;
-        }
-        $sql2 = "UPDATE order_item AS ot
-                 INNER JOIN orders AS o ON o.order_id = ot.order_id
-                 SET ot.qty = '$newqty' , ot.total = '$tot'
-                 WHERE ot.order_id = '$oid' AND o.hascheckout = 0 AND ot.item_id = '$item_id'";
+include '../dbcon/dbconnect.php';
+// Process form submission for WAITER
+if ($type == "WAITER" && isset($_POST['update'])) {
+    $newqty = $_POST['quantity'];
+    $item_id = $_POST['item_id'];
+    $sql3 = "SELECT price FROM item WHERE id = $item_id";
+    $priceres = mysqli_query($conn, $sql3);
+    if ($priceres && mysqli_num_rows($priceres) > 0) {
+        $price_row = mysqli_fetch_assoc($priceres);
+        $price = $price_row['price'];
+        $tot = $newqty * $price;
+    }
+    $sql2 = "UPDATE order_item AS ot
+             INNER JOIN orders AS o ON o.order_id = ot.order_id
+             SET ot.qty = '$newqty', ot.total = '$tot'
+             WHERE ot.order_id = '$oid' AND o.hascheckout = 0 AND ot.item_id = '$item_id'";
+    $res = mysqli_query($conn, $sql2);
 
-        $res = mysqli_query($conn, $sql2);
-
-        if ($res) {
-            // echo "Updated";
-        } else {
-            echo "Not updated";
-        }
-        if (isset($_POST['hasServe'])) {
-            $testt = $_POST['hasServe'];
-            $iid = $_POST['update'];
-            $serveSQL = "UPDATE order_item set hasServed = 1 where item_id = $iid and order_id = $oid and hasServed = 0";
-            $response = mysqli_query($conn, $serveSQL);
-            if ($response) {
-                echo "Done";
-            }
-        }
+    if ($res) {
+        // echo "Updated";
+    } else {
+        echo "Not updated";
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
                 <?php
                 if (isset($_POST['placeOrder'])) {
-                    $hasserve = $_POST['hasServe'];      }
+                    $hasserve = $_POST['hasServe'];
+                }
                 ?>
             <?php } else if ($type == "WAITER") {
             ?>
@@ -102,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Status</th>
                     <?php
                     if ($type != "KITCHEN") {
                     ?>
@@ -110,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     }
                     ?>
-                    <th>Status</th>
                     <th colspan="3">Action</th>
                 </tr>
                 <?php
@@ -125,27 +116,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         $item_id = $row['item_id'];
                         $orderitemid = $row['order_item_id'];
+                        $checkserved = $row['hasServed'];
+
                 ?>
                         <tr>
                             <td><?php echo $sn++; ?></td>
                             <td><?php echo $row['title']; ?></td>
                             <td><?php echo $row['price']; ?> </td>
                             <td><?php echo $row['qty']; ?> </td>
-                            <?php
-                            if ($type != "KITCHEN") {
-                            ?>
 
-
-                                <td>
-                                    <form action="" method="post">
-                                        <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>" <?php if ($type == "KITCHEN") {
-                                                                                                                                        echo 'hidden';
-                                                                                                                                    } ?>>
-                                        <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
-                                </td>
-                            <?php
-                            }
-                            ?>
                             <?php
                             $sql4 = "SELECT hasServed from order_item where order_item_id = $orderitemid";
                             $sqlres = mysqli_query($conn, $sql4);
@@ -161,8 +140,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             if ($type == "KITCHEN") {
                             ?>
 
-                                <td> <?php if ($type == "KITCHEN") { ?> <select name="hasServe" id="">
-                                            <option value="option" disabled selected>Select option</option>
+                                <td> <?php if ($type == "KITCHEN") {
+
+                                        ?> <select name="hasServe" id="">
+                                            <option value="" disabled selected>Select option</option>
                                             <option value="ready">Ready</option>
                                         </select> <?php } ?> </td>
                             <?php
@@ -172,8 +153,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <?php
                             }
                             ?>
+                            <?php
+                            if ($type != "KITCHEN") {
+                            ?>
+
+
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>" <?php if ($type == "KITCHEN") {
+                                                                                                                                        echo 'hidden';
+                                                                                                                                    } else if ($hasserved == "Order Placed") {
+                                                                                                                                        echo 'disabled';
+                                                                                                                                    } ?> <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+                                </td>
+                            <?php
+                            }
+                            ?>
                             <td>
-                                <button type="submit" class="update-btn" name="update" value="<?php echo $item_id ?>">UPDATE</button>
+
+                                <form action="placeorder.php?order_id=<?php echo $_GET['order_id']; ?>" method="post">
+                                    <input type="hidden" name="foodid" value="<?php echo $item_id; ?>">
+                                    <button type="submit" class="update-btn" name="update" value="<?php echo $item_id;
+                                                                                                    ?>">UPDATE</button>
+                                </form>
                                 </form>
                             </td>
                             <td>
