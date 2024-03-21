@@ -6,7 +6,7 @@ include '../login/login-check.php';
     <div class="wrapper">
         <br>
         <h3>MANAGE ADMIN</h3> <br>
-        <?php
+        <!-- <?php
         if (isset($_SESSION['add'])) {
             echo $_SESSION['add'];
             unset($_SESSION['add']);
@@ -19,7 +19,7 @@ include '../login/login-check.php';
             echo $_SESSION['update'];
             unset($_SESSION['update']);
         }
-        ?>
+        ?> -->
         <br><br>
         <a href="add-admin.php" class="btn-primary">Add Admin</a> <br> <br><br>
         <table class="tbl">

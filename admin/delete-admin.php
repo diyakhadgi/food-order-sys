@@ -11,10 +11,10 @@ $result = mysqli_query($conn, $sql);
 if($result == TRUE)
 {
     // echo "Admin Deleted";
-    $_SESSION['delete'] = "Admin Deleted Successfully";
+    // $_SESSION['delete'] = "Admin Deleted Successfully";
     header("location: ../admin/manage-admin.php");
 } else{
-    $_SESSION['delete'] = "Failed to delete Admin";
+    // $_SESSION['delete'] = "Failed to delete Admin";
     header("location: ../admin/manage-admin.php");
 }
 

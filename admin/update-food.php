@@ -90,10 +90,10 @@ if (isset($_GET['id'])) {
 
                 $result1 = mysqli_query($conn, $sql1);
                 if ($result1 == true) {
-                    $_SESSION['update'] = "Item Updated Successfully";
+                    // $_SESSION['update'] = "Item Updated Successfully";
                     header("location: ../admin/manage-food.php");
                 } else {
-                    $_SESSION['update'] = "Failed to Update";
+                    // $_SESSION['update'] = "Failed to Update";
                     header("location: ../admin/manage-food.php");
                 }
             }

@@ -1,9 +1,12 @@
 body {
-  background-color: rgb(162, 138, 138);
+  background-color: #3e3e42;
 }
 .login {
   border: none;
-  background-color: rgb(214, 143, 236);
+  border-radius: 5%;
+  /* background-color: rgb(171, 188, 38); */
+  background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 400px;
   height: 500px;
   /* border-radius: 20px; */
@@ -38,15 +41,17 @@ label {
   padding: 10px;
 }
 input {
-  background: whitesmoke;
+  background: white;
   height: 40px;
   line-height: 40px;
-  border-radius: 15px;
-  border: none;
+  border-radius: 5px;
+  padding: 1%;
+  border: 1px solid grey;
   margin-bottom: 20px;
 }
 button {
-  background: rgb(143, 184, 237);
+  background: #1a1a1d;
+  color: white;
   height: 40px;
   line-height: 40px;
   border-radius: 10px;
@@ -62,4 +67,5 @@ a {
   text-decoration: none;
   display: block;
   text-align: center;
+  color: #1a1a1d;
 }

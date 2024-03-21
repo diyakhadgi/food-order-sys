@@ -14,7 +14,7 @@ if (isset($_GET['id']) && isset($_GET['image'])) {
         $remove = unlink($path);
 
         if($remove==false) {
-            $_SESSION['upload'] = "Failed to remove image file";
+            // $_SESSION['upload'] = "Failed to remove image file";
             header("location: ../admin/manage-food.php");
             die();
         }
@@ -22,14 +22,14 @@ if (isset($_GET['id']) && isset($_GET['image'])) {
     $sql = "DELETE FROM `item` WHERE `id`= $id";
     $result = mysqli_query($conn, $sql);
     if($result==true){
-        $_SESSION['delete'] = "Item Deleted Successfully";
+        // $_SESSION['delete'] = "Item Deleted Successfully";
         header("location: ../admin/manage-food.php");
     } else {
-        $_SESSION['delete'] = "Item Failed to Delete";
+        // $_SESSION['delete'] = "Item Failed to Delete";
         header("location: ../admin/manage-food.php");
     }
 
 } else {
-    $_SESSION['unauthorized'] = "Unauthorized Access";
+    // $_SESSION['unauthorized'] = "Unauthorized Access";
     header("location: http://localhost/food-order-sys/admin/manage-food.php ");
 }

@@ -62,11 +62,11 @@ if (isset($_POST['submit'])) {
     ('$title', '$description', '$price', '$folder')";
 
         if (mysqli_query($conn, $sql)) {
-            $_SESSION['add'] = "Item added";
+            // $_SESSION['add'] = "Item added";
             header("location: http://localhost/food-order-sys/admin/manage-food.php "); 
             exit();
         } else {
-            $_SESSION['add'] = "Item not added";
+            // $_SESSION['add'] = "Item not added";
             header("location: http://localhost/food-order-sys/admin/manage-food.php ");
             exit();
         }

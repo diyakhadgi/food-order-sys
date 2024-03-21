@@ -58,11 +58,11 @@ include '../login/login-check.php';
 
         if($res==TRUE)
         {
-            $_SESSION['add'] = "Admin Added Successfully";
+            // $_SESSION['add'] = "Admin Added Successfully";
             header('location:http://localhost/food-order-sys/admin/manage-admin.php');
         } 
         else {
-            $_SESSION['add'] = "Failed to Add Admin";
+            // $_SESSION['add'] = "Failed to Add Admin";
             header("location:http://localhost/food-order-sys/admin/manage-admin.php");
         }
     }

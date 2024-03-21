@@ -23,7 +23,7 @@ include '../login/login-check.php';
         <br>
         <h3>MANAGE FOOD</h3> <br>
 
-        <?php
+        <!-- <?php
             if(isset($_SESSION['add'])){
                 echo $_SESSION['add'];
                 unset($_SESSION['add']);
@@ -44,7 +44,7 @@ include '../login/login-check.php';
                 echo $_SESSION['update'];
                 unset($_SESSION['update']);
             }
-        ?> <br><br>
+        ?> <br><br> -->
         <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
         <table class="item-tbl">
             <tr>

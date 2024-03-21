@@ -105,16 +105,16 @@ if (isset($_POST['submit'])) {
 
         $result = mysqli_query($conn, $updateQuery);
         if ($result) {
-            $_SESSION['update'] = "Admin Updated";
+            // $_SESSION['update'] = "Admin Updated";
             header('location:http://localhost/food-order-sys/admin/manage-admin.php');
             exit();
         } else {
-            $_SESSION['update'] = "Failed to update admin";
+            // $_SESSION['update'] = "Failed to update admin";
             header("location: http://localhost/food-order-sys/admin/manage-admin.php");
             exit();
         }
     } else {
-        $_SESSION['update'] = "Old password is incorrect";
+        // $_SESSION['update'] = "Old password is incorrect";
         header("location: http://localhost/food-order-sys/admin/manage-admin.php");
         exit();
     }
