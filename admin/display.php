@@ -86,6 +86,7 @@
     </footer>
     <style>
         .footer {
+            margin-top: auto 190px;
             background-color: #211b1b;
             color: #fff;
             padding: 20px 0;

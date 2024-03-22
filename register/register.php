@@ -3,7 +3,6 @@ include '../dbcon/dbconnect.php';
 
 session_start();
 
-// Check if the user is already logged in, redirect to the display page
 if (isset($_SESSION['id'])) {
     header('location:http://localhost/food-order-sys/pages/index.php');
     exit();
@@ -16,14 +15,26 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $role = $_POST['role'];
 
-    $query = "INSERT INTO staff (`username`, `name`, `email`, `password`, `isadmin`,`usertype`) VALUES ('$username', '$name', '$email', '$password','0', '$role')";
-    $result = mysqli_query($conn, $query);
+    try {
+        // unique username check
+        $check_query = "SELECT * FROM staff WHERE username = '$username'";
+        $check_result = mysqli_query($conn, $check_query);
 
-    if ($result) {
-        header('location:http://localhost/food-order-sys/login/login.php');
-        exit();
-    } else {
-        echo "Error: " . mysqli_error($conn);
+        if (mysqli_num_rows($check_result) > 0) {
+            throw new Exception("Username already exists. Please choose a different username.");
+        }
+
+        $query = "INSERT INTO staff (`username`, `name`, `email`, `password`, `isadmin`,`usertype`) VALUES ('$username', '$name', '$email', '$password','0', '$role')";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            header('location:http://localhost/food-order-sys/login/login.php');
+            exit();
+        } else {
+            throw new Exception("Registration failed. Please try again later.");
+        }
+    } catch (Exception $e) {
+        echo "<script>alert('" . $e->getMessage() . "');</script>";
     }
 }
 ?>
