@@ -7,21 +7,22 @@ include '../login/login-check.php';
         <br>
         <h3>MANAGE ADMIN</h3> <br>
         <!-- <?php
-        if (isset($_SESSION['add'])) {
-            echo $_SESSION['add'];
-            unset($_SESSION['add']);
-        }
-        if(isset($_SESSION['delete'])) {
-            echo $_SESSION['delete'];
-            unset($_SESSION['delete']);
-        }
-        if(isset($_SESSION['update'])){
-            echo $_SESSION['update'];
-            unset($_SESSION['update']);
-        }
-        ?> -->
+                if (isset($_SESSION['add'])) {
+                    echo $_SESSION['add'];
+                    unset($_SESSION['add']);
+                }
+                if (isset($_SESSION['delete'])) {
+                    echo $_SESSION['delete'];
+                    unset($_SESSION['delete']);
+                }
+                if (isset($_SESSION['update'])) {
+                    echo $_SESSION['update'];
+                    unset($_SESSION['update']);
+                }
+                ?> -->
         <br><br>
-        <a href="add-admin.php" class="btn-primary">Add Admin</a> <br> <br><br>
+        <!-- <a href="add-admin.php" class="btn-primary">Add Admin</a>  -->
+
         <table class="tbl">
             <tr>
                 <th>S.N.</th>
@@ -49,8 +50,8 @@ include '../login/login-check.php';
                         <td><?php echo $name ?></td>
                         <td><?php echo $username ?></td>
                         <td>
-                            <a href="../admin/update-admin.php?id=<?php echo $id;?>" class="btn-secondary">Update Admin</a>
-                            <a href="../admin/delete-admin.php?id=<?php echo $id;?>" class="btn-danger">Delete Admin</a>
+                            <a href="../admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
+                            <a href="../admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Delete Admin</a>
                         </td>
                     </tr>
 

@@ -59,7 +59,7 @@
     </div>
 
     <!-- add footer here  -->
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="containers">
             <div class="footer-content">
                 <div class="footer-section about">
@@ -83,7 +83,7 @@
                 &copy; 2023 Online Food Ordering System | Designed by Diya
             </div>
         </div>
-    </footer>
+    </footer> -->
     <style>
         .footer {
             margin-top: auto 190px;

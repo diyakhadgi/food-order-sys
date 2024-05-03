@@ -70,32 +70,36 @@ if (isset($_GET['id'])) {
         <?php
         if (isset($_POST['submit'])) {
             $id = $_POST['id'];
-            $title = $_POST['title'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $current_image = $row['image'];
 
-            $image = $_FILES['image']['name'];
-            $temp = $_FILES['image']['tmp_name'];
-            $folder = '../image_item/' . $image;
+            // Initialize an empty array to store the fields and values to be updated
+            $update_fields = [];
 
-            if (move_uploaded_file($temp, $folder)) {
-                $sql1 = "UPDATE `item` SET
-                `title` = '$title',
-                `description` = '$description',
-                `price`= '$price',
-                `image` = '$folder'
-                WHERE id = $id
-                ";
+            // Check if each field is set in the form data, and add it to the $update_fields array if it is
+            if (isset($_POST['title'])) {
+                $update_fields[] = "`title` = '" . $_POST['title'] . "'";
+            }
+            if (isset($_POST['description'])) {
+                $update_fields[] = "`description` = '" . $_POST['description'] . "'";
+            }
+            if (isset($_POST['price'])) {
+                $update_fields[] = "`price` = '" . $_POST['price'] . "'";
+            }
+            if ($_FILES['image']['name'] != '') {
+                $image = $_FILES['image']['name'];
+                $temp = $_FILES['image']['tmp_name'];
+                $folder = '../image_item/' . $image;
+                move_uploaded_file($temp, $folder);
+                $update_fields[] = "`image` = '" . $folder . "'";
+            }
 
-                $result1 = mysqli_query($conn, $sql1);
-                if ($result1 == true) {
-                    // $_SESSION['update'] = "Item Updated Successfully";
-                    header("location: ../admin/manage-food.php");
-                } else {
-                    // $_SESSION['update'] = "Failed to Update";
-                    header("location: ../admin/manage-food.php");
-                }
+            // Build the SQL UPDATE statement using the fields and values from the $update_fields array
+            $sql1 = "UPDATE `item` SET " . implode(", ", $update_fields) . " WHERE `id` = $id";
+
+            $result1 = mysqli_query($conn, $sql1);
+            if ($result1 == true) {
+                header("location: ../admin/manage-food.php");
+            } else {
+                header("location: ../admin/manage-food.php");
             }
         }
         ?>

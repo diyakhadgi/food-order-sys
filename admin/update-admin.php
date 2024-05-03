@@ -4,7 +4,7 @@ include '../login/login-check.php';
 session_start();
 $profile = $_SESSION['username'];
 if (!$profile) {
-    header("location: http://localhost/food-order-sys/index.html");
+    header("location: http://localhost/food-order-sys/pages/");
     exit(); 
 }
 ?>

@@ -32,7 +32,7 @@ include '../admin/nav.php';
                     <tr>
                         <td>Select Image: </td>
                         <td>
-                            <input type="file" name="image" id="" required>
+                            <input type="file" name="image" id="" required accept="image/*">
                         </td>
                     </tr>
                     <tr>

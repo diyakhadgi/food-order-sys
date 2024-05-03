@@ -6,7 +6,7 @@ include "../dbcon/dbconnect.php";
 <div class="main-content">
     <div class="wrapper">
         <br>
-        <h3>Manage Staffs</h3>
+        <h3>MANAGE STAFFS</h3>
 
         <table>
             <tr>
