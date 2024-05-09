@@ -121,16 +121,16 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                 // Get the order ID from the session
                 $orderid = $_SESSION['order_id'];
                 if ($orderid) {
-                    echo 'orderID: ' . $orderid . '<br>';
+                    // echo 'orderID: ' . $orderid . '<br>';
 
                     $orderitemlist = $_POST['ordercheckbox'];
                     print_r($orderitemlist);
                     $quantity = $_POST['quantity'];
                     print_r($quantity);
                     foreach ($orderitemlist as $itemId) {
-                        echo 'Item id: ' . $itemId . '<br>';
+                        // echo 'Item id: ' . $itemId . '<br>';
                         $orderQuantity = $quantity[$itemId];
-                        echo 'Order quantity: ' . $orderQuantity . '<br>';
+                        // echo 'Order quantity: ' . $orderQuantity . '<br>';   
                         // Insert order items into order_item table
                         $price = "SELECT price from item where id = $itemId";
                         $result = mysqli_query($conn, $price);
@@ -139,15 +139,16 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                             $row = mysqli_fetch_assoc($result);
                             if ($row) {
                                 $price = $row['price'];
-                                echo $price . '<br>';
+                                echo '<script>alert("Ordered successfully")</script>'; 
+                                // echo $price . '<br>';
                                 $totalPrice = $orderQuantity * $price;
-                                echo $totalPrice . '<br>';
+                                // echo $totalPrice . '<br>';
                             }
                             $insertordersql = "INSERT INTO order_item (`order_id`, item_id, user_id, qty, total) VALUES ('$orderid','$itemId',' $profile',$orderQuantity,'$totalPrice')";
                             $res = mysqli_query($conn, $insertordersql);
 
                             if ($res) {
-                                echo "Inserted successfully";
+                                // echo "Inserted successfully";
                             } else {
                                 echo "Error: " . mysqli_error($conn);
                             }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,12 +33,8 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            transition: all 0.3s ease;
         }
 
-        .wrapper:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
 
         .table-number {
             font-size: 24px;
@@ -61,6 +58,18 @@
 </head>
 
 <body>
+<nav>
+        <div class="left">
+            <a href="../pages/waiter_home.php">Online Food Ordering System</a>
+        </div>
+        <div class="right">
+            <a href="../pages/waiter_home.php">Home</a>
+            <!-- <a href="../pages/orderlist.php">Order List</a> -->
+            <!-- <a href="../register/register.php">Checkout</a> -->
+            <a href="#">Contact</a>
+            <a href="../login//logout.php">Logout</a>
+        </div>
+    </nav>
     <div class="container">
         <?php
 

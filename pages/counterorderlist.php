@@ -99,7 +99,7 @@
                             </tr>
                             <input type="hidden" name="table_id" value="<?php echo $oid; ?>">
                             <button type="submit" name="checkout">Checkout</button> &nbsp;
-                            <button type="submit" name="checkout" onclick="window.print()">Generate Bill</button>
+                            <!-- <button type="submit" name="checkout" onclick="window.print()">Generate Bill</button> -->
                         </form>
 
                     </table>

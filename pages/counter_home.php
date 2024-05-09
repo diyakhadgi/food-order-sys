@@ -32,11 +32,6 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .wrapper:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .table-number {
@@ -59,9 +54,21 @@
         }
 
     </style>
+        <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+
 </head>
 
 <body>
+<nav>
+        <div class="left">
+            <a href="../pages/kitchen_home.php">Online Food Ordering System</a>
+        </div>
+        <div class="right">
+            <a href="../pages/kitchen_home.php">Home</a>
+            <a href="#">Contact</a>
+            <a href="../login//logout.php">Logout</a>
+        </div>
+    </nav>
     <div class="container">
         <?php
 

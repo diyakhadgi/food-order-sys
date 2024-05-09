@@ -142,10 +142,14 @@ if ($type == "WAITER" && isset($_POST['update'])) {
 
                                 <td> <?php if ($type == "KITCHEN") {
 
-                                        ?> <select name="hasServe" id="">
-                                            <option value="" disabled selected>Select option</option>
-                                            <option value="ready">Ready</option>
-                                        </select> <?php } ?> </td>
+                                        ?>
+                                        <!-- <select name="hasServe" id="">
+                                             <option value="">Select option</option>
+                                             <option value="ready">Ready</option>
+                                         </select> -->
+                                        Ready <input type="checkbox" name="" id=""<?php echo ($hasserved == "Order Placed") ? 'checked' : ''; ?>>
+                                    <?php } ?>
+                                </td>
                             <?php
                             } else {
                             ?>
