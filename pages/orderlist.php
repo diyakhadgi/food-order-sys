@@ -111,7 +111,7 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                         echo "<tr> <td colspans='6'> Nothing to display. </td></tr>";
                     }
                     ?>
-                    <button name="finalizeorder" type="submit">Order Now</button>
+                    <button name="finalizeorder" type="submit" class="finalizeorder">Order Now</button>
                     <a href="vieworder.php?order_id=<?php echo $_SESSION['order_id'] ?>">View Order</a>
                 </form>
             </table>
@@ -144,7 +144,6 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                                 echo $totalPrice . '<br>';
                             }
                             $insertordersql = "INSERT INTO order_item (`order_id`, item_id, user_id, qty, total) VALUES ('$orderid','$itemId',' $profile',$orderQuantity,'$totalPrice')";
-                            echo $insertordersql;
                             $res = mysqli_query($conn, $insertordersql);
 
                             if ($res) {
@@ -162,5 +161,4 @@ if ($_SESSION['usertype'] == "KITCHEN") {
         </div>
     </div>
 </body>
-
 </html>

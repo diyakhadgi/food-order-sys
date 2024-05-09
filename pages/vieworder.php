@@ -160,12 +160,15 @@ if ($type == "WAITER" && isset($_POST['update'])) {
 
                                 <td>
                                     <form action="" method="post">
-                                        <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty'] ?>" <?php if ($type == "KITCHEN") {
+                                        <input type="number" name="quantity" min="1" max="100" value="<?php echo $row['qty']; ?>" <?php if ($type == "KITCHEN") {
                                                                                                                                         echo 'hidden';
                                                                                                                                     } else if ($hasserved == "Order Placed") {
                                                                                                                                         echo 'disabled';
-                                                                                                                                    } ?> <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+                                                                                                                                    } ?>>
+                                        <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
+                                    </form>
                                 </td>
+
                             <?php
                             }
                             ?>

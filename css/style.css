@@ -105,14 +105,6 @@ nav a:hover {
   color: #6c757d;
 }
 
-.order-now-link {
-  background-color: #343a40;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
 /* buttons  */
 .update-btn {
   background: rgb(83, 144, 224);
@@ -142,4 +134,7 @@ nav a:hover {
 }
 .del-btn:hover{
   background-color: rgb(242, 45, 45);
+}
+.finalizeorder {
+  background-color: blue;
 }
