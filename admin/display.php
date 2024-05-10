@@ -15,6 +15,9 @@
         <div class="food">
           <a href="manage-food.php">Food</a>
         </div>
+        <div class="">
+            <a href="manage-staff.php">Staff</a>
+        </div>
         <a href="../login/logout.php">Logout</a>
     </div>
 </nav>

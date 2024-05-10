@@ -7,6 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../css/item.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../search/search.js"></script>
 </head>
 
 <body>
@@ -16,12 +18,15 @@
     </div>
     <div class="right">
       <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit">Search</button>
+        <input type="search" id="searchBox" placeholder="Search...">
+        <!-- <button type="submit">Search</button> -->
       </div>
       <a href="../admin/display.php">Home</a>
       <div class="food">
         <a href="manage-food.php">Food</a>
+      </div>
+      <div class="">
+        <a href="../admin/manage-staff.php">Staff</a>
       </div>
       <a href="../login/logout.php">Logout</a>
     </div>

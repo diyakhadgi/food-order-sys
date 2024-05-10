@@ -69,7 +69,6 @@ if ($_SESSION['usertype'] == "KITCHEN") {
         <div class="wrapper">
             <br>
             <h3>Order List</h3> <br>
-
             <table class="item-tbl" border="1">
                 <tr>
                     <th>S.N.</th>

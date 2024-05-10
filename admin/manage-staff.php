@@ -38,7 +38,7 @@ include "../dbcon/dbconnect.php";
                 <td><?php echo $email ?></td>
                 <td><?php echo $usertype ?></td>
                 <td>
-                    <a href="../admin/delete-staff.php?id=<?php echo $id; ?>" onclick="return confirmDel();" class="btn-danger">Delete User</a>
+                    <a href="../admin/delete-staff.php?id=<?php echo $id; ?>" onclick="return confirmDel();" class="btn-dan">REMOVE</a>
                 </td>
             </tr>
     <?php
