@@ -63,15 +63,14 @@
 
 <body>
 <nav>
-        <div class="left">
-            <a href="../pages/kitchen_home.php">Online Food Ordering System</a>
-        </div>
-        <div class="right">
-            <a href="../pages/kitchen_home.php">Home</a>
-            <a href="#">Contact</a>
-            <a href="../login//logout.php">Logout</a>
-        </div>
-    </nav>
+    <div class="left">
+        <a href="../pages/waiter_home.php">Online Food Ordering System</a>
+    </div>
+    <div class="right">
+        <a href="../pages/waiter_home.php">Home</a>
+        <a href="../login/logout.php">Logout</a>
+    </div>
+</nav>
 <div class="container">
     <?php
     include '../dbcon/dbconnect.php';

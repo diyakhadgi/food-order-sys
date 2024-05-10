@@ -34,6 +34,40 @@ nav a:hover {
   float: right;
 }
 
+/* Styling for the search box */
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    padding: 6px 10px; /* Adjust padding as needed */
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 5px; /* Add margin between input and button */
+}
+
+.search-box button {
+    padding: 6px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Adjusting margins to center the search box */
+.right {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Push the right-aligned items to the right */
+    margin-right: auto; /* Center the right-aligned items */
+}
+
 /* main content  */
 .main-content {
   padding: 3% 0;
@@ -71,7 +105,7 @@ table tr th {
 table tr td {
   padding: 1%;
 }
-.btn-primary {
+.btn-p {
   background-color: #1e90ff;
   padding: 1%;
   color: white;
@@ -82,24 +116,42 @@ table tr td {
 .btn-primary:hover {
   background-color: #3742fa;
 }
-.btn-secondary {
-  background-color: #4681f4;
-  padding: 5px;
-  color: white;
-  text-decoration: none;
-  /* border-radius: 15px; */
-  font-weight: bold;
+.btn-sec{
+  background: rgb(83, 144, 224);
+  color: #fff; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 4px; 
+  font-size: 14px; 
+  cursor: pointer;
 }
 .btn-secondary:hover {
   background-color: #5a8cf0;
 }
-.btn-danger {
-  background-color: red;
-  padding: 5px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.btn-dan {
+  background: red;
+  color: #fff; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 4px; 
+  font-size: 14px; 
+  cursor: pointer; 
+  text-decoration: none; 
 }
 .btn-danger:hover {
   background-color: rgb(242, 45, 45);
+}
+.go-top-btn{
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.745);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }

@@ -3,7 +3,7 @@
 session_start();
 $profile = $_SESSION['id'];
 if (!$profile) {
-    header("location: http://localhost/food-order-sys/pages/index.php");
+    header("location: http://localhost/food-order-sys/login/login.php");
     exit(); 
 }
 ?>

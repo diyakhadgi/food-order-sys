@@ -4,7 +4,7 @@ session_start();
 $type = $_SESSION['usertype'];
 $profile = $_SESSION['id'];
 if (!$profile) {
-    header("location: http://localhost/food-order-sys/pages/index.php");
+    header("location: http://localhost/food-order-sys/login/login.php");
     exit();
 }
 
@@ -48,19 +48,15 @@ if ($type == "WAITER" && isset($_POST['update'])) {
 </head>
 
 <body>
-    <nav>
-        <div class="left">
-            <a href="../pages/waiter_home.php">Online Food Ordering System</a>
-        </div>
-        <div class="right">
-            <a href="../pages/waiter_home.php">Home</a>
-            <!-- <a href="../pages/orderlist.php">Order List</a> -->
-            <!-- <a href="../register/register.php">Checkout</a> -->
-            <a href="#">Contact</a>
-            <a href="../login/logout.php">Logout</a>
-        </div>
-    </nav>
-
+<nav>
+    <div class="left">
+        <a href="../pages/waiter_home.php">Online Food Ordering System</a>
+    </div>
+    <div class="right">
+        <a href="../pages/kitchen_home.php">Home</a>
+        <a href="../login/logout.php">Logout</a>
+    </div>
+</nav>
     <div class="main-content">
         <div class="wrapper">
             <br>
@@ -70,9 +66,11 @@ if ($type == "WAITER" && isset($_POST['update'])) {
                 <form method="POST">
                     <input type="submit" name="placeOrder" id="" value="Place Order" <?php if ($type == "KITCHEN") {
                                                                                             echo 'hidden';
+                                        
                                                                                         } ?>>
                 </form>
                 <?php
+                
                 if (isset($_POST['placeOrder'])) {
                     $hasserve = $_POST['hasServe'];
                 }
@@ -170,25 +168,38 @@ if ($type == "WAITER" && isset($_POST['update'])) {
                                                                                                                                         echo 'disabled';
                                                                                                                                     } ?>>
                                         <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
-                                    </form>
+                                        <?php if ($type == 'WAITER') {
+                                            
+                                        ?>
+
                                 </td>
 
-                            <?php
-                            }
-                            ?>
+        
+                            
                             <td>
-
-                                <form action="placeorder.php?order_id=<?php echo $_GET['order_id']; ?>" method="post">
+                            <button type="submit" class="update-btn" name="update" value="<?php echo $item_id;
+                                                                                                    ?>">UPDATE</button>
+                                    </form>
+                                    <?php
+                                        }
+                                    }
+                                        else if ($type == "KITCHEN"){
+                            
+                                    ?>
+                               
+                            </td>
+                            <td>
+                            <form action="placeorder.php?order_id=<?php echo $_GET['order_id']; ?>" method="post">
                                     <input type="hidden" name="foodid" value="<?php echo $item_id; ?>">
                                     <button type="submit" class="update-btn" name="update" value="<?php echo $item_id;
                                                                                                     ?>">UPDATE</button>
                                 </form>
-                                </form>
-                            </td>
-                            <td>
+                                <?php
+                                        
+                                }?>
                                 <a href="../pages/delete-order.php?id=<?php echo $orderitemid; ?>" onclick="return confirmDel();" class="del-btn" <?php if ($type == "KITCHEN") {
                                                                                                                                                         echo 'hidden';
-                                                                                                                                                    } ?>>Remove</a>
+                                                                                                                                                    } ?>>REMOVE</a>
                             </td>
                         </tr>
                 <?php

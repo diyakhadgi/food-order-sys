@@ -25,11 +25,6 @@
             <link rel="stylesheet" href="../css/admin.css">
             <link rel="stylesheet" href="../css/style.css">
             <link rel="stylesheet" href="../css/item.css">
-            <!-- <script>
-                function getConfirmation() {
-                    return confirm('Do you want to Checkout?');
-                }
-            </script> -->
 
         </head>
 
@@ -87,7 +82,7 @@
                             <?php
                                 }
                             } else {
-                                echo "<tr> <td colspan='6'> Nothing to display. </td></tr>";
+                                echo "<tr> <td colspan='6'> <p>Nothing to display.</p> </td></tr>";
                             }
                             ?>
                             <tr>

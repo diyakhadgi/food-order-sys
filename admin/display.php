@@ -6,7 +6,19 @@
 </head>
 
 <body>
-    <?php include('nav.php');
+<nav>
+    <div class="left">
+        <a href="../admin/display.php">Online Food Ordering System</a>
+    </div>
+    <div class="right">
+        <a href="../admin/display.php">Home</a>
+        <div class="food">
+          <a href="manage-food.php">Food</a>
+        </div>
+        <a href="../login/logout.php">Logout</a>
+    </div>
+</nav>
+    <?php
     include '../dbcon/dbconnect.php';
     include '../login/login-check.php';
     ?>
@@ -58,32 +70,6 @@
         </div>
     </div>
 
-    <!-- add footer here  -->
-    <!-- <footer class="footer">
-        <div class="containers">
-            <div class="footer-content">
-                <div class="footer-section about">
-                    <h2>About Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae imperdiet ex. Sed vestibulum nulla eu odio cursus, at vestibulum lorem cursus.</p>
-                    <div class="contact">
-                        <span> 123-456-7890</span>
-                        <span>hello@example.com</span>
-                    </div>
-                </div>
-                <div class="footer-section contact-form">
-                    <h2>Contact Us</h2>
-                    <div class="socials">
-                        <a href="www.facebook.com">Facebook</a>
-                        <a href="www.instagram.com">Instagram</i></a>
-                        <a href="www.linkedin.com">LinkedIn</i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2023 Online Food Ordering System | Designed by Diya
-            </div>
-        </div>
-    </footer> -->
     <style>
         .footer {
             margin-top: auto 190px;

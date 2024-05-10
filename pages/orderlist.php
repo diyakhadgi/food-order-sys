@@ -45,25 +45,25 @@ if ($_SESSION['usertype'] == "KITCHEN") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Food Ordering System</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/item.css">
-    <link rel="stylesheet" href="../css/orderpopup.css">
+    <link rel="stylesheet" href="../css/admin.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/item.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
-    <nav>
-        <div class="left">
-            <a href="../pages/waiter_home.php">Online Food Ordering System</a>
+<nav>
+    <div class="left">
+        <a href="../pages/waiter_home.php">Online Food Ordering System</a>
+    </div>
+    <div class="right">
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
         </div>
-        <div class="right">
-            <a href="../pages/waiter_home.php">Home</a>
-            <!-- <a href="../pages/orderlist.php">Order List</a> -->
-            <!-- <a href="../register/register.php">Checkout</a> -->
-            <a href="#">Contact</a>
-            <a href="../login//logout.php">Logout</a>
-        </div>
-    </nav>
+        <a href="../pages/waiter_home.php">Home</a>
+        <a href="../login/logout.php">Logout</a>
+    </div>
+</nav>
 
     <div class="main-content">
         <div class="wrapper">
@@ -97,12 +97,14 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                                 <td><img src="<?php echo $row['image'] ?>" alt="" srcset="" height="200px" width="200px"></td>
                                 <td>
                                     <div class="quantity">
-                                        Quantity<input type="number" min="1" max="100" name="quantity[<?php echo $row['id']; ?>]" value="1">
+                                        Quantity <input type="number" class="qty" min="1" max="100" name="quantity[<?php echo $row['id']; ?>]" value="1">
                                     </div>
                                 </td>
                                 <td>
-                                    Order now
-                                    <input type="checkbox" name="ordercheckbox[]" value="<?php echo $row['id'] ?>">
+                                    <label class="order-checkbox">
+                                        <span>Order Now</span>
+                                        <input type="checkbox" name="ordercheckbox[]" value="<?php echo $row['id'] ?>">
+                                    </label>
                                 </td>
                             </tr>
                     <?php
@@ -112,9 +114,12 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                     }
                     ?>
                     <button name="finalizeorder" type="submit" class="finalizeorder">Order Now</button>
-                    <a href="vieworder.php?order_id=<?php echo $_SESSION['order_id'] ?>">View Order</a>
+                    <a href="vieworder.php?order_id=<?php echo $_SESSION['order_id'] ?>" class="view-ord">View Order</a>
                 </form>
             </table>
+            <button class="go-top-btn">
+                ↑
+            </button>
             <?php
             // Check if the finalizeorder button is clicked
             if (isset($_POST['finalizeorder'])) {
@@ -139,7 +144,7 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                             $row = mysqli_fetch_assoc($result);
                             if ($row) {
                                 $price = $row['price'];
-                                echo '<script>alert("Ordered successfully")</script>'; 
+                                echo '<script>alert("Ordered successfully")</script>';
                                 // echo $price . '<br>';
                                 $totalPrice = $orderQuantity * $price;
                                 // echo $totalPrice . '<br>';
@@ -161,5 +166,25 @@ if ($_SESSION['usertype'] == "KITCHEN") {
             ?>
         </div>
     </div>
+    <script>
+        const goTopBtn = document.querySelector('.go-top-btn');
+
+        window.addEventListener('scroll', checkHeight)
+
+        function checkHeight() {
+            if (window.scrollY > 200) {
+                goTopBtn.style.display = "flex";
+            } else {
+                goTopBtn.style.display = "none";
+            }
+        }
+        goTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            })
+        })
+    </script>
 </body>
+
 </html>

@@ -2,5 +2,12 @@
 session_start();
 session_unset();
 session_destroy();
-header("location:http://localhost/food-order-sys/pages/index.php");
 ?>
+
+<script>
+if (confirm("Are you sure you want to log out?")) {
+    window.location.href = "http://localhost/food-order-sys/login/login.php";
+} else {
+
+}
+</script>

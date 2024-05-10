@@ -1,6 +1,8 @@
 table {
   border-collapse: collapse;
-  width: 1250px;
+  /* width: 1250px;  */
+  width: 100%;
+  /* border: 1px solid #333; */
 }
 .item-tbl tr {
   padding: 5%;
@@ -9,10 +11,12 @@ table {
 
 .item-tbl td {
   text-align: center;
-  padding: 0 15px;
+  padding: 5 15px;
+  /* background-color: #b8bbc07a; */
 }
 .item-tbl th {
   text-align: center;
+  background-color: #131f2f47;
 }
 .btn-sec {
   background-color: #4681f4;
@@ -40,4 +44,22 @@ a {
 }
 .widi {
   width: 15%;
+}
+
+input[type="number"] {
+  width: 50px; 
+  padding: 6px;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  font-size: 15px;
+  text-align: center; 
+  outline: none;
+}
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #007bff;
+  border-radius: 4px; 
+  margin-right: 8px; 
+  cursor: pointer; 
 }

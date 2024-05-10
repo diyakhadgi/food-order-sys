@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: lightgray;
             margin: 0;
             padding: 0;
         }
@@ -65,7 +65,6 @@
         </div>
         <div class="right">
             <a href="../pages/kitchen_home.php">Home</a>
-            <a href="#">Contact</a>
             <a href="../login//logout.php">Logout</a>
         </div>
     </nav>

@@ -24,28 +24,28 @@ include '../login/login-check.php';
         <h3>MANAGE FOOD</h3> <br>
 
         <!-- <?php
-            if(isset($_SESSION['add'])){
-                echo $_SESSION['add'];
-                unset($_SESSION['add']);
-            }
-            if(isset($_SESSION['delete'])) {
-                echo $_SESSION['delete'];
-                unset($_SESSION['delete']);
-            }
-            if(isset($_SESSION['upload'])){
-                echo $_SESSION['upload'];
-                unset($_SESSION['upload']);
-            }
-            if(isset($_SESSION['unauthorized'])){
-                echo $_SESSION['unauthorized'];
-                unset($_SESSION['unauthorized']);
-            }
-            if(isset($_SESSION['update'])){
-                echo $_SESSION['update'];
-                unset($_SESSION['update']);
-            }
-        ?> <br><br> -->
-        <a href="../admin/add-food.php" class="btn-primary">Add Food</a> <br> <br><br>
+                if (isset($_SESSION['add'])) {
+                    echo $_SESSION['add'];
+                    unset($_SESSION['add']);
+                }
+                if (isset($_SESSION['delete'])) {
+                    echo $_SESSION['delete'];
+                    unset($_SESSION['delete']);
+                }
+                if (isset($_SESSION['upload'])) {
+                    echo $_SESSION['upload'];
+                    unset($_SESSION['upload']);
+                }
+                if (isset($_SESSION['unauthorized'])) {
+                    echo $_SESSION['unauthorized'];
+                    unset($_SESSION['unauthorized']);
+                }
+                if (isset($_SESSION['update'])) {
+                    echo $_SESSION['update'];
+                    unset($_SESSION['update']);
+                }
+                ?> <br><br> -->
+        <a href="../admin/add-food.php" class="btn-p">Add Food</a> <br> <br><br>
         <table class="item-tbl">
             <tr>
                 <th>S.N.</th>
@@ -76,7 +76,7 @@ include '../login/login-check.php';
                         </td>
                         <td><?php echo 'Rs.' . $row['price']; ?></td>
                         <td colspan="2" class="widi">
-                            <a href="../admin/update-food.php?id=<?php echo $id;?>" class="btn-sec">Update Item</a>
+                            <a href="../admin/update-food.php?id=<?php echo $id; ?>" class="btn-sec">Update Item</a>
                         </td>
                         <td class="widi">
                             <a href="../admin/delete-food.php?id=<?php echo $id; ?>&image=<?php echo $row['image']; ?>" onclick="return confirmDel();" class="btn-dan">Delete Item</a>
@@ -89,5 +89,27 @@ include '../login/login-check.php';
             }
             ?>
         </table>
+        <button class="go-top-btn">
+            ↑
+        </button>
     </div>
 </div>
+<script>
+    const goTopBtn = document.querySelector('.go-top-btn');
+
+    window.addEventListener('scroll', checkHeight)
+
+    function checkHeight() {
+        if (window.scrollY > 200) {
+            goTopBtn.style.display = "flex";
+        } else {
+            goTopBtn.style.display = "none";
+        }
+    }
+    goTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    })
+</script>
