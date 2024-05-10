@@ -95,7 +95,7 @@ nav a:hover {
   width: 100%;
 }
 .tbl-30 {
-  width: 30%;
+  width: 50%;
 }
 table tr th {
   border-bottom: 1px solid black;
@@ -154,4 +154,14 @@ table tr td {
   display: none;
   justify-content: center;
   align-items: center;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+input[type="file"]::file-selector-button {
+  border: none;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  background-color: #a29bfe;
 }

@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
                 <tr>
                     <td>Price: </td>
                     <td>
-                        <input type="number" name="price" id="" value="<?php echo $price ?>">
+                        <input type="number" min="1" name="price" id="" value="<?php echo $price ?>">
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +53,7 @@ if (isset($_GET['id'])) {
                 <tr>
                     <td>Select New Image: </td>
                     <td>
-                        <input type="file" name="image" id="">
+                        <input type="file" name="image" id="" accept="image/*">
                     </td>
                 </tr>
                 <tr>
@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
                         <input type="hidden" name="id" value="<?php echo $id ?>">
                     </td>
                     <td>
-                        <input type="submit" name="submit" id="" value="Update item" class="btn-secondary">
+                        <input type="submit" name="submit" id="" value="Update item" class="btn-sec">
                     </td>
                 </tr>
             </table>

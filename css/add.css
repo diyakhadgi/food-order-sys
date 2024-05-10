@@ -1,0 +1,25 @@
+.btn-add{
+margin-top: 10px;
+  background: rgb(83, 144, 224);
+  color: #fff; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 15px; 
+  font-size: 14px; 
+  cursor: pointer; 
+  text-decoration: none; 
+}
+.add-tbl td{
+    padding-right: 50px;
+
+}
+input[type="file"]::file-selector-button {
+  border: none;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  background-color: #a29bfe;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}

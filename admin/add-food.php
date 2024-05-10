@@ -3,14 +3,14 @@ include '../dbcon/dbconnect.php';
 include '../login/login-check.php';
 include '../admin/nav.php';
 ?>
-
+<link rel="stylesheet" href="../css/add.css">
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Food</h1>
         <br><br>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="tbl-30">
-                <table>
+                <table class="add-tbl">
                     <tr>
                         <td>Title: </td>
                         <td>
@@ -26,7 +26,7 @@ include '../admin/nav.php';
                     <tr>
                         <td>Price: </td>
                         <td>
-                            <input type="number" name="price" id="" required>
+                            <input type="number" name="price" id="" min="1" required>
                         </td>
                     </tr>
                     <tr>
@@ -37,7 +37,7 @@ include '../admin/nav.php';
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" name="submit" id="" value="Add Food" class="btn-secondary">
+                            <input type="submit" name="submit" id="" value="Add Food" class="btn-add">
                         </td>
                     </tr>
                 </table>
