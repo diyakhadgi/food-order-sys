@@ -1,30 +1,23 @@
 <?php
 include '../dbcon/dbconnect.php';
-
-// Start session
 session_start();
-// Fetch the table number
+
 $tableNo = $_GET['table_id'];
-// Check if the order ID is already stored in the session
 if (!isset($_SESSION['order_id'])) {
-    // Sanitize the input
+
     $tableNo = mysqli_real_escape_string($conn, $tableNo);
 
-    // Check if there's an existing active order for the given table number
     $existingOrderQuery = "SELECT * FROM orders WHERE table_no = '$tableNo' AND hascheckout = 0";
     $existingOrderResult = mysqli_query($conn, $existingOrderQuery);
 
     if ($existingOrderResult && mysqli_num_rows($existingOrderResult) > 0) {
-        // If there's an active order, retrieve its ID and store it in the session
         $existingOrderRow = mysqli_fetch_assoc($existingOrderResult);
         $_SESSION['order_id'] = $existingOrderRow['order_id'];
     } else {
-        // If there's no active order, create a new one
         $insertOrderQuery = "INSERT INTO orders (table_no, hascheckout) VALUES ('$tableNo', 0)";
         $insertOrderResult = mysqli_query($conn, $insertOrderQuery);
 
         if ($insertOrderResult) {
-            // Store the ID of the newly created order in the session
             $_SESSION['order_id'] = mysqli_insert_id($conn);
         } else {
             echo "Error: " . mysqli_error($conn);
@@ -81,7 +74,6 @@ if ($_SESSION['usertype'] == "KITCHEN") {
 
                     <?php
                     $profile = $_SESSION['id'];
-                    // Fetch items from the database
                     $sql = "SELECT * FROM item";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
@@ -119,19 +111,14 @@ if ($_SESSION['usertype'] == "KITCHEN") {
                 ↑
             </button>
             <?php
-            // Check if the finalizeorder button is clicked
             if (isset($_POST['finalizeorder'])) {
-                // Get the order ID from the session
                 $orderid = $_SESSION['order_id'];
                 if ($orderid) {
-                    // echo 'orderID: ' . $orderid . '<br>';
-
                     $orderitemlist = $_POST['ordercheckbox'];
                     print_r($orderitemlist);
                     $quantity = $_POST['quantity'];
                     print_r($quantity);
                     foreach ($orderitemlist as $itemId) {
-                        // echo 'Item id: ' . $itemId . '<br>';
                         $orderQuantity = $quantity[$itemId];
                         // echo 'Order quantity: ' . $orderQuantity . '<br>';   
                         // Insert order items into order_item table
