@@ -57,8 +57,7 @@ if ($_SESSION['usertype'] == "KITCHEN") {
     </div>
     <div class="right">
         <div class="search-box">
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
+            <input type="text" placeholder="Search..." id="#searchBox">
         </div>
         <a href="../pages/waiter_home.php">Home</a>
         <a href="../login/logout.php">Logout</a>
